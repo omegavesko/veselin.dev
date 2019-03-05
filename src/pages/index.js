@@ -16,7 +16,7 @@ const Container = styled.div`
 
   min-height: 100vh;
 
-  background: url(${background}) center/cover;
+  background: #1c1c1c url(${background}) center/cover;
   color: #eee;
 
   display: flex;
