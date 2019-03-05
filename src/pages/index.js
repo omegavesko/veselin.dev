@@ -2,7 +2,9 @@ import 'normalize.css'
 
 import React from "react"
 import styled from "styled-components"
+import Helmet from "react-helmet"
 
+import { config, dom } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithubSquare, faTwitterSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 
@@ -10,6 +12,8 @@ import SEO from "../components/seo"
 
 import background from '../images/background.png'
 import avatar from '../images/avatar.jpg'
+
+config.autoAddCss = false;
 
 const Container = styled.div`
   @import url('https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:300,400,500,600');
@@ -102,6 +106,12 @@ const Introduction = styled.section`
 
 const IndexPage = () => (
   <>
+    <Helmet>
+      <style>
+        {/* Inline the FontAwesome CSS manually to prevent a flash of huge icons before the clientside JS loads */}
+        {dom.css()}
+      </style>
+    </Helmet>
     <SEO keywords={[`veselin`, `romić`, `developer`]} />
     <Container>
       <Content>
