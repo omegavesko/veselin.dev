@@ -1,22 +1,27 @@
-import 'normalize.css'
+import "normalize.css"
 
 import React from "react"
 import styled from "styled-components"
 import Helmet from "react-helmet"
 
-import { config, dom } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithubSquare, faTwitterSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { config, dom } from "@fortawesome/fontawesome-svg-core"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+  faGithubSquare,
+  faTwitterSquare,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons"
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
 
 import SEO from "../components/seo"
 
-import background from '../images/background.png'
-import avatar from '../images/avatar.jpg'
+import background from "../images/background.png"
+import avatar from "../images/avatar.jpg"
 
-config.autoAddCss = false;
+config.autoAddCss = false
 
 const Container = styled.div`
-  @import url('https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:300,400,500,600');
+  @import url("https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:300,400,500,600");
 
   min-height: 100vh;
 
@@ -27,7 +32,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  font-family: 'Barlow Semi Condensed', Helvetica, Arial, sans-serif;
+  font-family: "Barlow Semi Condensed", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 `
@@ -62,7 +67,7 @@ const SocialIcons = styled.section`
     color: inherit;
     .icon {
       margin: 0 0.25rem;
-      transition: transform .2s ease;
+      transition: transform 0.2s ease;
 
       &:hover {
         transform: translateY(-2px);
@@ -89,7 +94,7 @@ const Introduction = styled.section`
     border-bottom: 1px solid rgba(255, 255, 255, 0);
     font-weight: 400;
 
-    transition: border 300ms ease;
+    transition: border 200ms ease;
 
     &:hover {
       border-bottom: 1px solid rgba(255, 255, 255, 1);
@@ -101,6 +106,24 @@ const Introduction = styled.section`
     br {
       display: none;
     }
+  }
+`
+
+const BlogLink = styled.a`
+  font-size: 1.4rem;
+  font-weight: 600;
+
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0);
+  transition: border 200ms ease;
+
+  .icon {
+    margin-right: 0.5rem;
+  }
+
+  &:hover {
+    border-bottom: 1px solid rgba(255, 255, 255, 1);
   }
 `
 
@@ -119,22 +142,66 @@ const IndexPage = () => (
         <Name>Veselin Romić</Name>
         <Tagline>Software Engineer</Tagline>
         <SocialIcons>
-          <a href="https://www.linkedin.com/in/veselinromic/" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.linkedin.com/in/veselinromic/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FontAwesomeIcon className="icon" icon={faLinkedin} size="2x" />
           </a>
-          <a href="https://twitter.com/omegavesko" target="_blank" rel="noopener noreferrer">
-            <FontAwesomeIcon className="icon" icon={faTwitterSquare} size="2x" />
+          <a
+            href="https://twitter.com/omegavesko"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon
+              className="icon"
+              icon={faTwitterSquare}
+              size="2x"
+            />
           </a>
-          <a href="https://github.com/omegavesko" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://github.com/omegavesko"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FontAwesomeIcon className="icon" icon={faGithubSquare} size="2x" />
           </a>
         </SocialIcons>
         <Introduction>
           <p>Hi! I'm Veselin.</p>
-          <p>I help build and maintain <a href="https://poslovi.infostud.com/" target="_blank" rel="noopener noreferrer">poslovi.infostud.com</a>, <br/>the largest job board in Serbia.</p>
-          <p>I also work on a lot of interesting things at <a href="https://solpress.co/" target="_blank" rel="noopener noreferrer">Sol Press</a>.</p>
-          <p>Want to get in touch? Use the social buttons above, <br/>or email me at <a href="mailto:omegavesko@gmail.com">omegavesko@gmail.com</a>.</p>
+          <p>
+            I work at{" "}
+            <a
+              href="https://poslovi.infostud.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              poslovi.infostud.com
+            </a>
+            , the largest job board in Serbia.
+          </p>
+          <p>
+            I also work on a lot of interesting stuff at{" "}
+            <a
+              href="https://solpress.co/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Sol Press
+            </a>
+            .
+          </p>
+          <p>
+            Want to get in touch? Use the social buttons above, <br />
+            or email me at{" "}
+            <a href="mailto:omegavesko@gmail.com">omegavesko@gmail.com</a>.
+          </p>
         </Introduction>
+        <BlogLink href="https://blog.veselin.dev">
+          <FontAwesomeIcon className="icon" icon={faArrowRight} size="1x" />
+          Go to blog.veselin.dev
+        </BlogLink>
       </Content>
     </Container>
   </>
