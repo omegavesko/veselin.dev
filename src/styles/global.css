@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  a {
+    @apply text-gray-800 font-medium underline;
+  }
+}
+
+ul.cv-item-bullets {
+  list-style-type: none;
+  margin-left: 13.5px;
+}
+
+ul.cv-item-bullets li::before {
+  content: "•";
+  margin-right: 8px;
+  font-weight: 800;
+
+  margin-left: -13.5px;
+}
