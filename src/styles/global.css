@@ -20,3 +20,11 @@ ul.cv-item-bullets li::before {
 
   margin-left: -13.5px;
 }
+
+span.highlight {
+  @apply font-medium;
+
+  background: linear-gradient(135deg, #4338ca, #2563eb);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

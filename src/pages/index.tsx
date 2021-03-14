@@ -47,7 +47,7 @@ const TextSection: React.FC<{ title: React.ReactNode }> = ({
 )
 
 const Highlight: React.FC = ({ children }) => (
-  <span className="text-blue-700">{children}</span>
+  <span className="highlight">{children}</span>
 )
 
 const CVItem: React.FC<{
