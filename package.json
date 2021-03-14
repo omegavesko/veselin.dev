@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "@fontsource/fira-sans": "^4.2.2",
+    "@types/react-helmet": "^6.1.0",
     "autoprefixer": "^10.2.5",
     "gatsby": "^3.0.1",
     "gatsby-plugin-gatsby-cloud": "^2.0.0",
