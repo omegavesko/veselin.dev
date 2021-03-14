@@ -65,7 +65,8 @@ const CVItem: React.FC<{
   title: React.ReactNode
   details: React.ReactNode
   active?: boolean
-}> = ({ title, details, active = false, children }) => (
+  companyUrl?: string
+}> = ({ title, details, active = false, companyUrl = null, children }) => (
   <div
     className={`px-6 py-6 border-2 ${
       active
@@ -73,9 +74,18 @@ const CVItem: React.FC<{
         : "border-gray-300 dark:border-gray-700"
     }`}
   >
-    <h3 className="mb-1 text-3xl text-gray-800 leading-tight dark:text-gray-200">
-      {title}
-    </h3>
+    {companyUrl !== null ? (
+      <a href={companyUrl}>
+        <h3 className="mb-1 text-3xl text-gray-800 leading-tight transition dark:text-gray-200 hover:text-gray-500 dark:hover:text-gray-400">
+          {title}
+        </h3>
+      </a>
+    ) : (
+      <h3 className="mb-1 text-3xl text-gray-800 leading-tight dark:text-gray-200">
+        {title}
+      </h3>
+    )}
+
     <span className="block mb-4 text-gray-800 dark:text-gray-200">
       {details}
     </span>
@@ -193,6 +203,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
             <div className="flex flex-col gap-5">
               <CVItem
                 title="Infostud Group"
+                companyUrl="https://www.infostud.com/?locale=en"
                 details={
                   <>
                     <span className="whitespace-nowrap">
@@ -291,6 +302,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
               </CVItem>
               <CVItem
                 title="Sol Press"
+                companyUrl="https://solpress.co/"
                 details={
                   <>
                     <span className="whitespace-nowrap">
@@ -347,6 +359,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
               </CVItem>
               <CVItem
                 title="Execom"
+                companyUrl="https://www.execom.eu/"
                 details={
                   <>
                     <span className="whitespace-nowrap">Intern &middot;</span>{" "}
