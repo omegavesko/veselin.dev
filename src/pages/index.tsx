@@ -107,7 +107,7 @@ const StandardLink: React.FC<React.DetailedHTMLProps<
 const IndexPage: React.FC<IndexPageProps> = () => {
   return (
     <>
-      <div className="max-w-3xl mx-auto px-8 pt-12 pb-8">
+      <div className="max-w-3xl mx-auto px-8 pt-12 pb-28">
         <h1 className="mb-2 text-6xl text-gray-800 font-medium leading-none dark:text-gray-200">
           Veselin Romić
         </h1>
