@@ -214,7 +214,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                     <li>
                       Participated in the rewrite of Poslovi Infostud's ATS
                       product (
-                      <StandardLink href="https://prijava.infostud.com/">
+                      <StandardLink href="https://www.hrlab.rs/en/hr-lab-asistent">
                         HR Lab ATS
                       </StandardLink>
                       ) using modern technologies such as PHP 7, React, GraphQL,
@@ -223,7 +223,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                     </li>
                     <li>
                       Maintained{" "}
-                      <StandardLink href="https://prijava.infostud.com/">
+                      <StandardLink href="https://poslovi.infostud.com/">
                         Poslovi.infostud.com
                       </StandardLink>
                       , the leading job board in Serbia, with over 1 million
@@ -231,7 +231,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                     </li>
                     <li>
                       Built the current iteration of{" "}
-                      <StandardLink href="https://prijava.infostud.com/">
+                      <StandardLink href="https://www.hrlab.rs/en/">
                         HRLab.rs
                       </StandardLink>
                       , the website for the HR Lab brand, in collaboration with
@@ -254,13 +254,13 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                       <StandardLink href="https://prijava.infostud.com/">
                         prijava.infostud.com
                       </StandardLink>
-                      , an OAuth 2-based front end for Infostud's internal LDAP
+                      , an OAuth 2-based frontend for Infostud's internal LDAP
                       database. This resulted in a significantly friendlier user
                       experience for employees logging into internal tools.
                     </li>
                     <li>
                       Built{" "}
-                      <StandardLink href="https://prijava.infostud.com/">
+                      <StandardLink href="https://accounts.hrlab.rs">
                         accounts.hrlab.rs
                       </StandardLink>
                       , an OAuth 2-based identity server for the HR Lab
@@ -303,11 +303,13 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                   <ul className="cv-item-bullets mt-3 flex flex-col gap-3">
                     <li>
                       Built and maintained the corporate website (
-                      <StandardLink href="#">solpress.co</StandardLink>). The
-                      website was initially written in PHP (Laravel), and later
-                      reimagined as an API-based application with WordPress as a
-                      headless CMS and Laravel on the backend, and Vue.js
-                      (Nuxt.js) on the frontend.
+                      <StandardLink href="https://solpress.co/">
+                        solpress.co
+                      </StandardLink>
+                      ). The website was initially written in PHP (Laravel), and
+                      later reimagined as an API-based application with
+                      WordPress as a headless CMS and Laravel on the backend,
+                      and Vue.js (Nuxt.js) on the frontend.
                     </li>
                     <li>
                       Built several one-off landing pages in a variety of
@@ -319,7 +321,10 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                     </li>
                     <li>
                       Set up a Shopify store at{" "}
-                      <StandardLink href="#">shop.solpress.co</StandardLink>.
+                      <StandardLink href="https://shop.solpress.co/">
+                        shop.solpress.co
+                      </StandardLink>
+                      .
                     </li>
                   </ul>
                 </div>
@@ -367,16 +372,13 @@ const IndexPage: React.FC<IndexPageProps> = () => {
       <footer className="flex items-center justify-center py-6 bg-gray-50 text-gray-600 dark:bg-gray-700 dark:text-gray-300">
         <span>
           Built with ❤ using{" "}
-          <StandardLink
-            className="text-gray-600"
-            href="https://prijava.infostud.com/"
-          >
+          <StandardLink className="text-gray-600" href="https://reactjs.org/">
             React
           </StandardLink>{" "}
           and{" "}
           <StandardLink
             className="text-gray-600"
-            href="https://prijava.infostud.com/"
+            href="https://www.gatsbyjs.com/"
           >
             Gatsby
           </StandardLink>
