@@ -9,11 +9,21 @@ import {
 
 export interface IndexPageProps {}
 
+const Links: React.FC = () => (
+  <ul className="flex flex-col gap-2 flex-wrap lg:flex-row lg:gap-x-5">
+    <LinksItem icon={<SiToptal />} name={"veselin.romic"} />
+    <LinksItem icon={<SiLinkedin />} name={"veselinromic"} />
+    <LinksItem icon={<SiGithub />} name={"omegavesko"} />
+    <LinksItem icon={<SiTwitter />} name={"omegavesko"} />
+    <LinksItem icon={<SiGmail />} name={"hi@veselin.dev"} />
+  </ul>
+)
+
 const LinksItem: React.FC<{
   icon: React.ReactNode
   name: React.ReactNode
 }> = ({ icon, name }) => (
-  <li className="flex items-center gap-3 text-lg text-gray-800 font-medium">
+  <li className="flex items-center gap-3 text-lg text-gray-800 font-normal lg:gap-2 lg:text-base">
     {icon} {name}
   </li>
 )
@@ -38,16 +48,6 @@ const TextSection: React.FC<{ title: React.ReactNode }> = ({
 
 const Highlight: React.FC = ({ children }) => (
   <span className="text-blue-700">{children}</span>
-)
-
-const Links: React.FC = () => (
-  <ul className="flex flex-col gap-2">
-    <LinksItem icon={<SiToptal />} name={"veselin.romic"} />
-    <LinksItem icon={<SiLinkedin />} name={"veselinromic"} />
-    <LinksItem icon={<SiGithub />} name={"omegavesko"} />
-    <LinksItem icon={<SiTwitter />} name={"omegavesko"} />
-    <LinksItem icon={<SiGmail />} name={"hi@veselin.dev"} />
-  </ul>
 )
 
 const CVItem: React.FC<{
@@ -79,7 +79,7 @@ const Tag: React.FC = ({ children }) => (
 const IndexPage: React.FC<IndexPageProps> = () => {
   return (
     <>
-      <div className="max-w-3xl mx-auto px-8 py-8">
+      <div className="max-w-3xl mx-auto px-8 pt-12 pb-8">
         <h1 className="mb-4 text-6xl text-gray-800 font-medium leading-none">
           Veselin Romić
         </h1>
@@ -99,48 +99,60 @@ const IndexPage: React.FC<IndexPageProps> = () => {
           </TextSection>
           <TextSection title="About you (hopefully?)">
             <p>
-              You're a company with a sustainable, ethical business model that
-              doesn't harm your employees, your users, or the planet. You're
-              probably a high-quality consultancy, or a product company with an
-              interesting, innovative product.
+              You're a company with a{" "}
+              <Highlight>sustainable, ethical business model</Highlight> that
+              doesn't harm your employees, your users, or the planet.
             </p>
             <p>
-              You know that the best products are made by diverse, inclusive,
-              autonomous teams, and that engineering is the heart of your
-              company, not just a cost center to be handed instructions.
+              You know that the best products are made by{" "}
+              <Highlight>diverse, inclusive, autonomous teams</Highlight>, and
+              that engineering is the heart of your company, not just a cost
+              center to be micromanaged.
             </p>
             <p>
-              Ideally, you're a remote company (or offer remote roles), but I'm
-              open to relocating to <Highlight>the EU</Highlight> or{" "}
-              <Highlight>Japan</Highlight> for the right role.
+              Ideally, you're a <Highlight>remote</Highlight> company (or offer
+              remote roles), but I'm open to relocating to{" "}
+              <Highlight>the EU</Highlight> or <Highlight>Japan</Highlight> for
+              the right role.
             </p>
           </TextSection>
           <TextSection title="Tech">
             <p>
               I specialize in building APIs, websites and cutting-edge web
-              applications using tools like modern PHP and JavaScript.
+              applications using tools like <Highlight>modern PHP</Highlight>{" "}
+              and <Highlight>JavaScript</Highlight>.
             </p>
             <p>
               While I greatly enjoy the power and productivity of the modern JS
-              ecosystem, I strongly prefer writing code in TypeScript (or a
-              comparable statically-typed language) over vanilla JS.
+              ecosystem, I strongly prefer actually writing code in{" "}
+              <Highlight>TypeScript</Highlight> (or a comparable
+              statically-typed language), rather than vanilla JS.{" "}
+              <span className="text-base text-gray-500">
+                (For what it's worth, most of the JS community seems to agree
+                with me on this these days.)
+              </span>
             </p>
             <p>
-              I find joy in building fast, maintainable backend systems based on
-              PHP or Node.js that expose a REST or GraphQL API.
+              I have years of experience building fast, stable and maintainable
+              backend systems, based on <Highlight>PHP</Highlight> or{" "}
+              <Highlight>Node.js</Highlight>, and exposing a{" "}
+              <Highlight>REST</Highlight> or <Highlight>GraphQL</Highlight> API.
             </p>
             <p>
               When it comes to building websites and user interfaces, I'm
-              heavily invested into React and the tools that build on top of it
-              (Gatsby, Next.js, etc.), but I'm also open to working with other
-              frameworks, like Vue.js or Svelte.
+              heavily invested into <Highlight>React</Highlight> and the tools
+              that build on top of it (<Highlight>Gatsby</Highlight>,{" "}
+              <Highlight>Next.js</Highlight>, etc.), but I'm also open to
+              working with other frameworks, like <Highlight>Vue.js</Highlight>{" "}
+              or <Highlight>Svelte</Highlight>.
             </p>
             <p>
-              Or course, I'm also always open to learning new things, so I'm by
-              no means restricting myself to the tech that I've listed here.
+              Or course, I'm also{" "}
+              <Highlight>always open to learning new things</Highlight>, so I'm
+              by no means restricting myself to the tech that I've listed here.
             </p>
           </TextSection>
-          <Section title="CV">
+          <Section title="Experience">
             <div className="flex flex-col gap-5">
               <CVItem
                 title="Infostud Group"
@@ -160,11 +172,14 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                 active={true}
               >
                 <div className="text-gray-800">
-                  I participated in full-stack development of greenfield
-                  projects, as well as maintenance of legacy code, as part of
-                  Poslovi Infostud and HR Lab &mdash; the leading platforms for
-                  job seekers and employers in Serbia. Technology-wise, I
-                  primarily worked with PHP and JavaScript/TypeScript.
+                  At Infostud I participated in the development of greenfield
+                  projects across the entire stack (frontend, backend, DevOps),
+                  as well as being responsible for maintenance of legacy code,
+                  as part of Poslovi Infostud and HR Lab &mdash; the leading
+                  platforms for job seekers and employers in Serbia.
+                  Technology-wise, I primarily worked with PHP and
+                  JavaScript/TypeScript, and deployed (new) projects as Docker
+                  images to an internal Kubernetes cluster.
                   <ul className="cv-item-bullets mt-3 flex flex-col gap-3">
                     <li>
                       Participated in the rewrite of Poslovi Infostud's ATS
@@ -295,9 +310,10 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                 }
               >
                 <div className="text-gray-800">
-                  At Execom I worked independently on multiple Web-based
-                  projects for several weeks, using technologies such as PHP
-                  (with Symfony framework) and AngularJS.
+                  During my internship at Execom, I worked independently on
+                  multiple Web-based projects for several weeks, using
+                  technologies such as PHP (with the Symfony framework) and
+                  AngularJS.
                 </div>
                 <Tags>
                   <Tag>PHP</Tag>
