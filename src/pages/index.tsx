@@ -4,7 +4,7 @@ import {
   SiLinkedin,
   SiGithub,
   SiGmail,
-  SiTwitter
+  SiTwitter,
 } from "react-icons/si"
 import Helmet from "react-helmet"
 
@@ -50,7 +50,7 @@ const Section: React.FC<{ title: React.ReactNode }> = ({ title, children }) => (
 
 const TextSection: React.FC<{ title: React.ReactNode }> = ({
   title,
-  children
+  children,
 }) => (
   <Section title={title}>
     <div className="flex flex-col gap-4 text-lg">{children}</div>
@@ -79,7 +79,7 @@ const CVItem: React.FC<{
     <span className="block mb-4 text-gray-800 dark:text-gray-200">
       {details}
     </span>
-    {children}
+    <div className="leading-relaxed">{children}</div>
   </div>
 )
 
@@ -93,10 +93,12 @@ const Tag: React.FC = ({ children }) => (
   </span>
 )
 
-const StandardLink: React.FC<React.DetailedHTMLProps<
-  React.AnchorHTMLAttributes<HTMLAnchorElement>,
-  HTMLAnchorElement
->> = ({ children, className, ...props }) => (
+const StandardLink: React.FC<
+  React.DetailedHTMLProps<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    HTMLAnchorElement
+  >
+> = ({ children, className, ...props }) => (
   <a
     className={` ${className} text-gray-800 font-medium underline dark:text-gray-200`}
     {...props}
