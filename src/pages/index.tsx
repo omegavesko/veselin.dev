@@ -76,6 +76,15 @@ const Tag: React.FC = ({ children }) => (
   </span>
 )
 
+const StandardLink: React.FC<React.DetailedHTMLProps<
+  React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  HTMLAnchorElement
+>> = ({ children, className, ...props }) => (
+  <a className={` ${className} text-gray-800 font-medium underline`} {...props}>
+    {children}
+  </a>
+)
+
 const IndexPage: React.FC<IndexPageProps> = () => {
   return (
     <>
@@ -116,7 +125,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
               the right role.
             </p>
           </TextSection>
-          <TextSection title="Tech">
+          <TextSection title="What I do">
             <p>
               I specialize in building APIs, websites and cutting-edge web
               applications using tools like <Highlight>modern PHP</Highlight>{" "}
@@ -184,25 +193,30 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                     <li>
                       Participated in the rewrite of Poslovi Infostud's ATS
                       product (
-                      <a href="https://prijava.infostud.com/">HR Lab ATS</a>)
-                      using modern technologies such as PHP 7, React, GraphQL,
+                      <StandardLink href="https://prijava.infostud.com/">
+                        HR Lab ATS
+                      </StandardLink>
+                      ) using modern technologies such as PHP 7, React, GraphQL,
                       Docker, and Kubernetes. HR Lab ATS is now the most
                       widely-used ATS software in Serbia.
                     </li>
                     <li>
                       Maintained{" "}
-                      <a href="https://prijava.infostud.com/">
+                      <StandardLink href="https://prijava.infostud.com/">
                         Poslovi.infostud.com
-                      </a>
+                      </StandardLink>
                       , the leading job board in Serbia, with over 1 million
                       monthly unique users.
                     </li>
                     <li>
                       Built the current iteration of{" "}
-                      <a href="https://prijava.infostud.com/">HRLab.rs</a>, the
-                      website for the HR Lab brand, in collaboration with a
-                      designer using React and Gatsby. Improved site performance
-                      by 300% compared to the previous iteration of the site.
+                      <StandardLink href="https://prijava.infostud.com/">
+                        HRLab.rs
+                      </StandardLink>
+                      , the website for the HR Lab brand, in collaboration with
+                      a designer using React and Gatsby. Improved site
+                      performance by 300% compared to the previous iteration of
+                      the site.
                     </li>
                     <li>
                       Implemented CI/CD pipelines for the team's codebases using
@@ -216,18 +230,18 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                     </li>
                     <li>
                       Built{" "}
-                      <a href="https://prijava.infostud.com/">
+                      <StandardLink href="https://prijava.infostud.com/">
                         prijava.infostud.com
-                      </a>
+                      </StandardLink>
                       , an OAuth 2-based front end for Infostud's internal LDAP
                       database. This resulted in a significantly friendlier user
                       experience for employees logging into internal tools.
                     </li>
                     <li>
                       Built{" "}
-                      <a href="https://prijava.infostud.com/">
+                      <StandardLink href="https://prijava.infostud.com/">
                         accounts.hrlab.rs
-                      </a>
+                      </StandardLink>
                       , an OAuth 2-based identity server for the HR Lab
                       platform. This enabled all other HR Lab products to easily
                       authenticate users through a central location.
@@ -268,11 +282,11 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                   <ul className="cv-item-bullets mt-3 flex flex-col gap-3">
                     <li>
                       Built and maintained the corporate website (
-                      <a href="#">solpress.co</a>). The website was initially
-                      written in PHP (Laravel), and later reimagined as an
-                      API-based application with WordPress as a headless CMS and
-                      Laravel on the backend, and Vue.js (Nuxt.js) on the
-                      frontend.
+                      <StandardLink href="#">solpress.co</StandardLink>). The
+                      website was initially written in PHP (Laravel), and later
+                      reimagined as an API-based application with WordPress as a
+                      headless CMS and Laravel on the backend, and Vue.js
+                      (Nuxt.js) on the frontend.
                     </li>
                     <li>
                       Built several one-off landing pages in a variety of
@@ -283,8 +297,8 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                       written in PHP (Laravel) and Vue.js.
                     </li>
                     <li>
-                      Set up a Shopify store at <a href="#">shop.solpress.co</a>
-                      .
+                      Set up a Shopify store at{" "}
+                      <StandardLink href="#">shop.solpress.co</StandardLink>.
                     </li>
                   </ul>
                 </div>
@@ -332,13 +346,19 @@ const IndexPage: React.FC<IndexPageProps> = () => {
       <footer className="flex items-center justify-center py-6 bg-gray-50 text-gray-600">
         <span>
           Built with ❤ using{" "}
-          <a className="text-gray-600" href="https://prijava.infostud.com/">
+          <StandardLink
+            className="text-gray-600"
+            href="https://prijava.infostud.com/"
+          >
             React
-          </a>{" "}
+          </StandardLink>{" "}
           and{" "}
-          <a className="text-gray-600" href="https://prijava.infostud.com/">
+          <StandardLink
+            className="text-gray-600"
+            href="https://prijava.infostud.com/"
+          >
             Gatsby
-          </a>
+          </StandardLink>
           .
         </span>
       </footer>
