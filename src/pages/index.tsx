@@ -11,11 +11,11 @@ export interface IndexPageProps {}
 
 const Links: React.FC = () => (
   <ul className="flex flex-col gap-2 flex-wrap lg:flex-row lg:gap-x-5">
-    <a href="https://www.toptal.com/resume/veselin-romic">
-      <LinksItem icon={<SiToptal />} name={"veselin.romic"} />
-    </a>
     <a href="https://www.linkedin.com/in/veselinromic/">
       <LinksItem icon={<SiLinkedin />} name={"veselinromic"} />
+    </a>
+    <a href="https://www.toptal.com/resume/veselin-romic">
+      <LinksItem icon={<SiToptal />} name={"veselin.romic"} />
     </a>
     <a href="https://github.com/omegavesko">
       <LinksItem icon={<SiGithub />} name={"omegavesko"} />
@@ -108,10 +108,10 @@ const IndexPage: React.FC<IndexPageProps> = () => {
   return (
     <>
       <div className="max-w-3xl mx-auto px-8 pt-12 pb-8">
-        <h1 className="mb-4 text-6xl text-gray-800 font-medium leading-none dark:text-gray-200">
+        <h1 className="mb-2 text-6xl text-gray-800 font-medium leading-none dark:text-gray-200">
           Veselin Romić
         </h1>
-        <p className="mb-6 text-lg dark:text-white">
+        <p className="mb-6 text-lg text-gray-800 dark:text-gray-200">
           Turning ☕ into 💾 since 19XX
         </p>
 
@@ -157,14 +157,14 @@ const IndexPage: React.FC<IndexPageProps> = () => {
               ecosystem, I strongly prefer actually writing code in{" "}
               <Highlight>TypeScript</Highlight> (or a comparable
               statically-typed language), rather than vanilla JS.{" "}
-              <span className="text-base text-gray-500">
+              <span className="text-base text-gray-500 dark:text-gray-400">
                 (For what it's worth, most of the JS community seems to agree
                 with me on this these days.)
               </span>
             </p>
             <p>
               I have years of experience building fast, stable and maintainable
-              backend systems, based on <Highlight>PHP</Highlight> or{" "}
+              backend systems, usually based on <Highlight>PHP</Highlight> or{" "}
               <Highlight>Node.js</Highlight>, and exposing a{" "}
               <Highlight>REST</Highlight> or <Highlight>GraphQL</Highlight> API.
             </p>
@@ -202,13 +202,13 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                 active={true}
               >
                 <div className="text-gray-800 dark:text-gray-200">
-                  At Infostud I participated in the development of greenfield
+                  At Infostud I participate in the development of greenfield
                   projects across the entire stack (frontend, backend, DevOps),
                   as well as being responsible for maintenance of legacy code,
                   as part of Poslovi Infostud and HR Lab &mdash; the leading
                   platforms for job seekers and employers in Serbia.
-                  Technology-wise, I primarily worked with PHP and
-                  JavaScript/TypeScript, and deployed (new) projects as Docker
+                  Technology-wise, I primarily work with PHP and
+                  JavaScript/TypeScript, and deploy (new) projects as Docker
                   images to an internal Kubernetes cluster.
                   <ul className="cv-item-bullets mt-3 flex flex-col gap-3">
                     <li>
