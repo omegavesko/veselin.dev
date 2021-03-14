@@ -11,11 +11,21 @@ export interface IndexPageProps {}
 
 const Links: React.FC = () => (
   <ul className="flex flex-col gap-2 flex-wrap lg:flex-row lg:gap-x-5">
-    <LinksItem icon={<SiToptal />} name={"veselin.romic"} />
-    <LinksItem icon={<SiLinkedin />} name={"veselinromic"} />
-    <LinksItem icon={<SiGithub />} name={"omegavesko"} />
-    <LinksItem icon={<SiTwitter />} name={"omegavesko"} />
-    <LinksItem icon={<SiGmail />} name={"hi@veselin.dev"} />
+    <a href="https://www.toptal.com/resume/veselin-romic">
+      <LinksItem icon={<SiToptal />} name={"veselin.romic"} />
+    </a>
+    <a href="https://www.linkedin.com/in/veselinromic/">
+      <LinksItem icon={<SiLinkedin />} name={"veselinromic"} />
+    </a>
+    <a href="https://github.com/omegavesko">
+      <LinksItem icon={<SiGithub />} name={"omegavesko"} />
+    </a>
+    <a href="https://twitter.com/omegavesko">
+      <LinksItem icon={<SiTwitter />} name={"omegavesko"} />
+    </a>
+    <a href="mailto:hi@veselin.dev">
+      <LinksItem icon={<SiGmail />} name={"hi@veselin.dev"} />
+    </a>
   </ul>
 )
 
@@ -23,7 +33,7 @@ const LinksItem: React.FC<{
   icon: React.ReactNode
   name: React.ReactNode
 }> = ({ icon, name }) => (
-  <li className="flex items-center gap-3 text-lg text-gray-800 font-normal lg:gap-2 lg:text-base">
+  <li className="flex items-center gap-3 text-lg text-gray-800 font-normal transition hover:text-gray-500 lg:gap-2 lg:text-base">
     {icon} {name}
   </li>
 )
