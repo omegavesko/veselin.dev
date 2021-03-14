@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  gatsby:
+    image: node:14
+    ports:
+      - 8000:8000
+    working_dir: /home/node/app
+    user: "1000"
+    command: /bin/sh -c "yarn && yarn develop -H 0.0.0.0"
+    volumes:
+      - ./:/home/node/app
