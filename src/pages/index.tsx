@@ -88,7 +88,7 @@ const Tags: React.FC = ({ children }) => (
 )
 
 const Tag: React.FC = ({ children }) => (
-  <span className="px-2 py-1 bg-gray-800 text-white text-xs rounded dark:bg-gray-200 dark:text-black">
+  <span className="px-2 py-1 bg-gray-800 text-white text-xs rounded dark:bg-gray-700 dark:text-white">
     {children}
   </span>
 )
