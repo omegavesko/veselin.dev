@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-white dark:bg-gray-800 dark:text-white;
+}
+
 ul.cv-item-bullets {
   list-style-type: none;
   margin-left: 13.5px;
@@ -21,4 +25,14 @@ span.highlight {
   background: linear-gradient(135deg, #4338ca, #2563eb);
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  span.highlight {
+    @apply font-medium;
+
+    background: linear-gradient(135deg, #fdba74, #fde047);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }

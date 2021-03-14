@@ -33,14 +33,14 @@ const LinksItem: React.FC<{
   icon: React.ReactNode
   name: React.ReactNode
 }> = ({ icon, name }) => (
-  <li className="flex items-center gap-3 text-lg text-gray-800 font-normal transition hover:text-gray-500 lg:gap-2 lg:text-base">
+  <li className="flex items-center gap-3 text-lg text-gray-800 font-normal transition dark:text-gray-200 hover:text-gray-500 dark:hover:text-gray-300 lg:gap-2 lg:text-base">
     {icon} {name}
   </li>
 )
 
 const Section: React.FC<{ title: React.ReactNode }> = ({ title, children }) => (
   <section>
-    <h2 className="mb-4 text-4xl text-gray-800 font-medium leading-tight">
+    <h2 className="mb-4 text-4xl text-gray-800 font-medium leading-tight dark:text-gray-200">
       {title}
     </h2>
     {children}
@@ -67,11 +67,17 @@ const CVItem: React.FC<{
 }> = ({ title, details, active = false, children }) => (
   <div
     className={`px-6 py-6 border-2 ${
-      active ? "border-gray-800" : "border-gray-300"
+      active
+        ? "border-gray-800 dark:border-gray-200"
+        : "border-gray-300 dark:border-gray-700"
     }`}
   >
-    <h3 className="mb-1 text-3xl text-gray-800 leading-tight">{title}</h3>
-    <span className="block mb-4 text-gray-800">{details}</span>
+    <h3 className="mb-1 text-3xl text-gray-800 leading-tight dark:text-gray-200">
+      {title}
+    </h3>
+    <span className="block mb-4 text-gray-800 dark:text-gray-200">
+      {details}
+    </span>
     {children}
   </div>
 )
@@ -81,7 +87,7 @@ const Tags: React.FC = ({ children }) => (
 )
 
 const Tag: React.FC = ({ children }) => (
-  <span className="px-2 py-1 bg-gray-800 text-white text-xs rounded">
+  <span className="px-2 py-1 bg-gray-800 text-white text-xs rounded dark:bg-gray-200 dark:text-black">
     {children}
   </span>
 )
@@ -90,7 +96,10 @@ const StandardLink: React.FC<React.DetailedHTMLProps<
   React.AnchorHTMLAttributes<HTMLAnchorElement>,
   HTMLAnchorElement
 >> = ({ children, className, ...props }) => (
-  <a className={` ${className} text-gray-800 font-medium underline`} {...props}>
+  <a
+    className={` ${className} text-gray-800 font-medium underline dark:text-gray-200`}
+    {...props}
+  >
     {children}
   </a>
 )
@@ -99,10 +108,12 @@ const IndexPage: React.FC<IndexPageProps> = () => {
   return (
     <>
       <div className="max-w-3xl mx-auto px-8 pt-12 pb-8">
-        <h1 className="mb-4 text-6xl text-gray-800 font-medium leading-none">
+        <h1 className="mb-4 text-6xl text-gray-800 font-medium leading-none dark:text-gray-200">
           Veselin Romić
         </h1>
-        <p className="mb-6 text-lg">Turning ☕ into 💾 since 19XX</p>
+        <p className="mb-6 text-lg dark:text-white">
+          Turning ☕ into 💾 since 19XX
+        </p>
 
         <Links />
 
@@ -190,7 +201,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                 }
                 active={true}
               >
-                <div className="text-gray-800">
+                <div className="text-gray-800 dark:text-gray-200">
                   At Infostud I participated in the development of greenfield
                   projects across the entire stack (frontend, backend, DevOps),
                   as well as being responsible for maintenance of legacy code,
@@ -285,7 +296,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                   </>
                 }
               >
-                <div className="text-gray-800">
+                <div className="text-gray-800 dark:text-gray-200">
                   I worked on various projects for Sol Press over the course of
                   a few years, largely being responsible for building their
                   presence on the Web from scratch.
@@ -333,7 +344,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                   </>
                 }
               >
-                <div className="text-gray-800">
+                <div className="text-gray-800 dark:text-gray-200">
                   During my internship at Execom, I worked independently on
                   multiple Web-based projects for several weeks, using
                   technologies such as PHP (with the Symfony framework) and
@@ -353,7 +364,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
           </Section>
         </div>
       </div>
-      <footer className="flex items-center justify-center py-6 bg-gray-50 text-gray-600">
+      <footer className="flex items-center justify-center py-6 bg-gray-50 text-gray-600 dark:bg-gray-700 dark:text-gray-300">
         <span>
           Built with ❤ using{" "}
           <StandardLink
