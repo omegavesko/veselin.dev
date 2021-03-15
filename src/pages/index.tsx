@@ -120,7 +120,11 @@ const StandardLink: React.FC<
 const IndexPage: React.FC<IndexPageProps> = () => {
   return (
     <>
-      <Helmet>
+      <Helmet
+        htmlAttributes={{
+          lang: "en",
+        }}
+      >
         <title>Veselin Romić</title>
         <meta name="description" content="Turning ☕ into 💾 since 19XX" />
       </Helmet>
