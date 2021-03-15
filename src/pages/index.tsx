@@ -375,7 +375,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
           </Section>
         </div>
       </div>
-      <footer className="flex items-center justify-center py-6 bg-gray-50 text-gray-600 dark:bg-gray-700 dark:text-gray-300">
+      <footer className="flex items-center justify-center py-6 text-gray-500 dark:text-gray-400">
         <span>
           Built with ❤ using{" "}
           <StandardLink className="text-gray-600" href="https://reactjs.org/">
