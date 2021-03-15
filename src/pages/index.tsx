@@ -148,8 +148,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
             <p>
               You know that the best products are made by{" "}
               <Highlight>diverse, inclusive, autonomous teams</Highlight>, and
-              that engineering is the heart of your company, not just a cost
-              center to be micromanaged.
+              that engineering is more than just a cost center.
             </p>
           </TextSection>
           <TextSection title="What I do">
@@ -159,10 +158,9 @@ const IndexPage: React.FC<IndexPageProps> = () => {
               and <Highlight>JavaScript</Highlight>.
             </p>
             <p>
-              While I greatly enjoy the power and productivity of the modern JS
+              While I love the power and productivity of the modern JS
               ecosystem, I strongly prefer actually writing code in{" "}
-              <Highlight>TypeScript</Highlight> (or a comparable
-              statically-typed language), rather than vanilla JS.{" "}
+              <Highlight>TypeScript</Highlight>, rather than vanilla JS.{" "}
               <span className="text-base text-gray-500 dark:text-gray-400">
                 (For what it's worth, most of the JS community seems to agree
                 with me on this these days.)
@@ -209,7 +207,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                 active={true}
               >
                 <div className="text-gray-800 dark:text-gray-200">
-                  At Infostud I participate in the development of greenfield
+                  At Infostud, I participate in the development of greenfield
                   projects across the entire stack (frontend, backend, DevOps),
                   as well as being responsible for maintenance of legacy code,
                   as part of the team behind Poslovi Infostud and HR Lab &mdash;
@@ -315,20 +313,19 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                         solpress.co
                       </StandardLink>
                       ). The website was initially written in PHP (Laravel), and
-                      later reimagined as an API-based application with
-                      WordPress as a headless CMS and Laravel on the backend,
-                      and Vue.js (Nuxt.js) on the frontend.
+                      later rewritten as an API-based application with WordPress
+                      as a headless CMS and Laravel on the backend, and Vue.js
+                      (Nuxt.js) on the frontend.
                     </li>
                     <li>
-                      Built several one-off landing pages in a variety of
-                      technologies.
+                      Built several landing pages in a variety of technologies.
                     </li>
                     <li>
-                      Built a bespoke in-house CMS for landing page management,
-                      written in PHP (Laravel) and Vue.js.
+                      Built an in-house CMS for landing page management, in PHP
+                      (Laravel) and Vue.js.
                     </li>
                     <li>
-                      Set up a Shopify store at{" "}
+                      Set up and customized a Shopify store for{" "}
                       <StandardLink href="https://shop.solpress.co/">
                         shop.solpress.co
                       </StandardLink>
