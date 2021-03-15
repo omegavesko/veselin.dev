@@ -1,11 +1,5 @@
 import * as React from "react"
-import {
-  SiToptal,
-  SiLinkedin,
-  SiGithub,
-  SiGmail,
-  SiTwitter,
-} from "react-icons/si"
+import { SiLinkedin, SiGithub, SiGmail, SiTwitter } from "react-icons/si"
 import Helmet from "react-helmet"
 
 export interface IndexPageProps {}
@@ -14,9 +8,6 @@ const Links: React.FC = () => (
   <ul className="flex flex-col gap-2 flex-wrap lg:flex-row lg:gap-x-5">
     <a href="https://www.linkedin.com/in/veselinromic/">
       <LinksItem icon={<SiLinkedin />} name={"veselinromic"} />
-    </a>
-    <a href="https://www.toptal.com/resume/veselin-romic">
-      <LinksItem icon={<SiToptal />} name={"veselin.romic"} />
     </a>
     <a href="https://github.com/omegavesko">
       <LinksItem icon={<SiGithub />} name={"omegavesko"} />
@@ -221,21 +212,21 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                   At Infostud I participate in the development of greenfield
                   projects across the entire stack (frontend, backend, DevOps),
                   as well as being responsible for maintenance of legacy code,
-                  as part of Poslovi Infostud and HR Lab &mdash; the leading
-                  platforms for job seekers and employers in Serbia.
-                  Technology-wise, I primarily work with PHP and
+                  as part of the team behind Poslovi Infostud and HR Lab &mdash;
+                  the leading platforms for job seekers and employers in Serbia.
+                  Tech-wise, I primarily work with PHP and
                   JavaScript/TypeScript, and deploy (new) projects as Docker
                   images to an internal Kubernetes cluster.
                   <ul className="cv-item-bullets mt-3 flex flex-col gap-3">
                     <li>
                       Participated in the rewrite of Poslovi Infostud's ATS
-                      product (
+                      product (now{" "}
                       <StandardLink href="https://www.hrlab.rs/en/hr-lab-asistent">
                         HR Lab ATS
                       </StandardLink>
-                      ) using modern technologies such as PHP 7, React, GraphQL,
-                      Docker, and Kubernetes. HR Lab ATS is now the most
-                      widely-used ATS software in Serbia.
+                      ) using modern tech such as PHP 7, React, GraphQL, Docker,
+                      and Kubernetes. HR Lab ATS is now the most widely-used ATS
+                      software in Serbia.
                     </li>
                     <li>
                       Maintained{" "}
@@ -262,7 +253,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                     <li>
                       Built HR Lab Payments, an internal payment platform that
                       integrates with PayPal and NestPay to enable HR Lab
-                      products to quickly and easily accept payments by credit
+                      products to quickly and easily implement payment by credit
                       card and other payment methods.
                     </li>
                     <li>
