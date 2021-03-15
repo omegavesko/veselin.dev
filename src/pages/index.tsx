@@ -156,12 +156,6 @@ const IndexPage: React.FC<IndexPageProps> = () => {
               that engineering is the heart of your company, not just a cost
               center to be micromanaged.
             </p>
-            <p>
-              Ideally, you're a <Highlight>remote</Highlight> company (or offer
-              remote roles), but I'm open to relocating to{" "}
-              <Highlight>the EU</Highlight> or <Highlight>Japan</Highlight> for
-              the right role.
-            </p>
           </TextSection>
           <TextSection title="What I do">
             <p>
