@@ -108,6 +108,12 @@ const StandardLink: React.FC<
   </a>
 )
 
+const Confidential: React.FC = () => (
+  <span className="inline-block px-2 py-1 text-gray-800 bg-gray-100 text-opacity-60 rounded dark:text-gray-200 dark:bg-gray-700 dark:bg-opacity-50">
+    Confidential
+  </span>
+)
+
 const IndexPage: React.FC<IndexPageProps> = () => {
   return (
     <>
@@ -143,7 +149,8 @@ const IndexPage: React.FC<IndexPageProps> = () => {
             <p>
               You're a company with a{" "}
               <Highlight>sustainable, ethical business model</Highlight> that
-              doesn't harm your employees, your users, or the planet.
+              doesn't exploit your employees, your users, or the planet (and
+              maybe even does some good).
             </p>
             <p>
               You know that the best products are made by{" "}
@@ -158,9 +165,9 @@ const IndexPage: React.FC<IndexPageProps> = () => {
               and <Highlight>JavaScript</Highlight>.
             </p>
             <p>
-              While I love the power and productivity of the modern JS
-              ecosystem, I strongly prefer actually writing code in{" "}
-              <Highlight>TypeScript</Highlight>, rather than vanilla JS.{" "}
+              While I love the power of the modern JS ecosystem, I strongly
+              prefer actually writing code in <Highlight>TypeScript</Highlight>,
+              rather than vanilla JS.{" "}
               <span className="text-base text-gray-500 dark:text-gray-400">
                 (For what it's worth, most of the JS community seems to agree
                 with me on this these days.)
@@ -250,9 +257,10 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                     </li>
                     <li>
                       Built HR Lab Payments, an internal payment platform that
-                      integrates with PayPal and NestPay to enable HR Lab
-                      products to quickly and easily implement payment by credit
-                      card and other payment methods.
+                      integrates with PayPal and NestPay (a proprietary payment
+                      platform) to enable HR Lab products to quickly and easily
+                      implement payment by credit card and other payment
+                      methods.
                     </li>
                     <li>
                       Built{" "}
@@ -288,6 +296,79 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                 </Tags>
               </CVItem>
               <CVItem
+                title={<Confidential />}
+                details={
+                  <>
+                    <span className="whitespace-nowrap">
+                      Sep 2020 &mdash; Oct 2020
+                    </span>
+                  </>
+                }
+              >
+                <div className="text-gray-800 dark:text-gray-200">
+                  This was a side project that ended up not really panning out,
+                  but it did give me the opportunity to play with some things I
+                  hadn't previously gotten the chance to.
+                  <ul className="cv-item-bullets mt-3 flex flex-col gap-3">
+                    <li>
+                      Built a website using React (with Next.js) on the frontend
+                      and PHP (with Symfony) on the backend, paying special
+                      attention to technical SEO.
+                    </li>
+                    <li>
+                      Implemented an end-to-end type-safe data model using PHP,
+                      the Doctrine ORM and GraphQL on the server, and TypeScript
+                      with the Apollo GraphQL client and{" "}
+                      <span className="font-mono whitespace-nowrap">
+                        apollo client:codegen
+                      </span>{" "}
+                      on the client.
+                    </li>
+                    <li>
+                      Wrote code to aggregate data from a number of different
+                      third-party websites, using PHP and{" "}
+                      <StandardLink href="https://github.com/FriendsOfPHP/Goutte">
+                        Goutte
+                      </StandardLink>
+                      .
+                    </li>
+                    <li>
+                      Designed a visually-pleasing, responsive frontend in Adobe
+                      XD, and implemented the design using React and{" "}
+                      <span className="whitespace-nowrap">
+                        styled-components
+                      </span>
+                      .
+                    </li>
+                    <li>
+                      Deployed the frontend to Netlify using{" "}
+                      <StandardLink href="https://github.com/netlify/next-on-netlify">
+                        next-on-netlify
+                      </StandardLink>
+                      .
+                    </li>
+                    <li>
+                      Deployed the backend to DigitalOcean using Docker and{" "}
+                      <StandardLink href="https://dokku.com/">
+                        Dokku
+                      </StandardLink>
+                      , and set up CI/CD using GitHub Actions.
+                    </li>
+                  </ul>
+                </div>
+                <Tags>
+                  <Tag>PHP</Tag>
+                  <Tag>JavaScript</Tag>
+                  <Tag>TypeScript</Tag>
+                  <Tag>Symfony</Tag>
+                  <Tag>React</Tag>
+                  <Tag>Docker</Tag>
+                  <Tag>GraphQL</Tag>
+                  <Tag>Next.js</Tag>
+                  <Tag>DevOps</Tag>
+                </Tags>
+              </CVItem>
+              <CVItem
                 title="Sol Press"
                 companyUrl="https://solpress.co/"
                 details={
@@ -312,17 +393,17 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                       <StandardLink href="https://solpress.co/">
                         solpress.co
                       </StandardLink>
-                      ). The website was initially written in PHP (Laravel), and
-                      later rewritten as an API-based application with WordPress
-                      as a headless CMS and Laravel on the backend, and Vue.js
-                      (Nuxt.js) on the frontend.
+                      ). The website was initially written in PHP (with
+                      Laravel), and later rewritten as an API-based application
+                      with WordPress as a headless CMS and Laravel on the
+                      backend, and Vue.js (with Nuxt.js) on the frontend.
                     </li>
                     <li>
                       Built several landing pages in a variety of technologies.
                     </li>
                     <li>
                       Built an in-house CMS for landing page management, in PHP
-                      (Laravel) and Vue.js.
+                      (with Laravel) and Vue.js.
                     </li>
                     <li>
                       Set up and customized a Shopify store for{" "}
