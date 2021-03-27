@@ -213,16 +213,21 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                 }
                 active={true}
               >
-                <div className="text-gray-800 dark:text-gray-200">
-                  At Infostud, I participate in the development of greenfield
-                  projects across the entire stack (frontend, backend, DevOps),
-                  as well as being responsible for maintenance of legacy code,
-                  as part of the team behind Poslovi Infostud and HR Lab &mdash;
-                  the leading platforms for job seekers and employers in Serbia.
-                  Tech-wise, I primarily work with PHP and
-                  JavaScript/TypeScript, and deploy (new) projects as Docker
-                  images to an internal Kubernetes cluster.
-                  <ul className="cv-item-bullets mt-3 flex flex-col gap-3">
+                <div className="flex flex-col gap-3 text-gray-800 dark:text-gray-200">
+                  <p>
+                    At Infostud, I participate in the development of greenfield
+                    projects across the entire stack (frontend, backend,
+                    DevOps), as well as being responsible for maintenance of
+                    legacy code, as part of the team behind Poslovi Infostud and
+                    HR Lab &mdash; the leading platforms for job seekers and
+                    employers in Serbia.
+                  </p>
+                  <p>
+                    Tech-wise, I primarily work with PHP and
+                    JavaScript/TypeScript, and deploy (new) projects as Docker
+                    images to an internal Kubernetes cluster.
+                  </p>
+                  <ul className="cv-item-bullets flex flex-col gap-3">
                     <li>
                       Participated in the rewrite of Poslovi Infostud's ATS
                       product (now{" "}
