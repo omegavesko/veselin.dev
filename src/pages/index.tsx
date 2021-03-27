@@ -229,9 +229,17 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                       <StandardLink href="https://www.hrlab.rs/en/hr-lab-asistent">
                         HR Lab ATS
                       </StandardLink>
-                      ) using modern tech such as PHP 7, React, GraphQL, Docker,
-                      and Kubernetes. HR Lab ATS is now the most widely-used ATS
-                      software in Serbia.
+                      ) using modern tech such as PHP 7+, React, GraphQL,
+                      Docker, and Kubernetes. HR Lab ATS is now the most
+                      widely-used ATS software in Serbia.
+                    </li>
+                    <li>
+                      Built HR Lab Payments, an internal payment platform that
+                      integrates with PayPal and NestPay (a proprietary payment
+                      platform) to enable HR Lab products to easily implement
+                      payment by credit card and other payment methods. On
+                      average, tens of thousands of dollars worth of payments
+                      pass through this service every month.
                     </li>
                     <li>
                       Maintained{" "}
@@ -256,13 +264,6 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                       GitLab CI/CD, Docker, Kubernetes, and Helm.
                     </li>
                     <li>
-                      Built HR Lab Payments, an internal payment platform that
-                      integrates with PayPal and NestPay (a proprietary payment
-                      platform) to enable HR Lab products to quickly and easily
-                      implement payment by credit card and other payment
-                      methods.
-                    </li>
-                    <li>
                       Built{" "}
                       <StandardLink href="https://prijava.infostud.com/">
                         prijava.infostud.com
@@ -277,7 +278,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                         accounts.hrlab.rs
                       </StandardLink>
                       , an OAuth 2-based identity server for the HR Lab
-                      platform. This enabled all other HR Lab products to easily
+                      platform. This enabled HR Lab products to easily
                       authenticate users through a central location.
                     </li>
                   </ul>
