@@ -1,6 +1,8 @@
 import * as React from "react"
 import { SiLinkedin, SiGithub, SiGmail, SiTwitter } from "react-icons/si"
 import Helmet from "react-helmet"
+import { StaticImage } from "gatsby-plugin-image"
+import { Link } from "gatsby"
 
 export interface IndexPageProps {}
 
@@ -114,6 +116,19 @@ const Confidential: React.FC = () => (
   </span>
 )
 
+const Nav: React.FC = () => (
+  <nav className="pb-12 2xl:absolute 2xl:left-8">
+    <Link to="/">
+      <StaticImage
+        src="../images/avatar.png"
+        alt="Home"
+        height={64}
+        className="rounded-full h-12 w-12 2xl:h-16 2xl:w-16"
+      />
+    </Link>
+  </nav>
+)
+
 const IndexPage: React.FC<IndexPageProps> = () => {
   return (
     <>
@@ -125,7 +140,8 @@ const IndexPage: React.FC<IndexPageProps> = () => {
         <title>Veselin Romić</title>
         <meta name="description" content="Turning ☕ into 💾 since 19XX" />
       </Helmet>
-      <div className="max-w-3xl mx-auto px-8 pt-12 pb-28">
+      <div className="max-w-3xl mx-auto px-8 pt-8 pb-28 2xl:pt-12">
+        <Nav />
         <h1 className="mb-2 text-6xl text-gray-800 font-medium leading-none dark:text-gray-200">
           Veselin Romić
         </h1>
