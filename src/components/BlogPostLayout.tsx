@@ -12,7 +12,10 @@ import {
 } from "date-fns"
 
 const InlineCode: React.FC = ({ children }) => (
-  <code className="mx-0.5 px-2 py-0.5 rounded text-base whitespace-nowrap tracking-tight dark:bg-gray-700">
+  <code
+    style={{ WebkitBoxDecorationBreak: "clone", boxDecorationBreak: "clone" }}
+    className="mx-0.5 px-2 py-0.5 rounded text-base tracking-tight dark:bg-gray-700"
+  >
     {children}
   </code>
 )

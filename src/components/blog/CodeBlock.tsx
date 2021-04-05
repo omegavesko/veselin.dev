@@ -20,7 +20,7 @@ const CodeBlock: React.FC<CodeBlockProps> = props => {
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre
-          className={`rounded-xl py-6 px-8 text-sm leading-relaxed ${className}`}
+          className={`rounded-xl py-6 px-8 text-sm leading-relaxed overflow-auto ${className}`}
           style={style}
         >
           {tokens.map((line, i) => (
