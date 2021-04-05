@@ -8,3 +8,4 @@
 import "./src/styles/global.css"
 import "@fontsource/fira-sans"
 import "@fontsource/fira-sans/500.css"
+import "@fontsource/fira-code"

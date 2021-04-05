@@ -5,6 +5,7 @@ module.exports = {
     fontFamily: {
       sans: ["Fira Sans", "sans-serif"],
       mono: [
+        "Fira Code",
         "Consolas",
         "Andale Mono WT",
         "Andale Mono",

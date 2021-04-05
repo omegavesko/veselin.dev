@@ -1,7 +1,6 @@
 import * as React from "react"
 import Highlight, { defaultProps } from "prism-react-renderer"
 import theme from "prism-react-renderer/themes/vsDark"
-import Prism from "prism-react-renderer/prism"
 
 export interface CodeBlockProps {}
 
@@ -20,7 +19,10 @@ const CodeBlock: React.FC<CodeBlockProps> = props => {
       theme={theme}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={`rounded-xl py-6 px-8 ${className}`} style={style}>
+        <pre
+          className={`rounded-xl py-6 px-8 text-sm leading-relaxed ${className}`}
+          style={style}
+        >
           {tokens.map((line, i) => (
             <div key={i} {...getLineProps({ line, key: i })}>
               {line.map((token, key) => (
