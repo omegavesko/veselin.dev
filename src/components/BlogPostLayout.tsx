@@ -11,12 +11,16 @@ import {
   differenceInYears,
 } from "date-fns"
 
+const InlineCode: React.FC = ({ children }) => (
+  <code className="mx-0.5 px-2 py-0.5 rounded text-base whitespace-nowrap tracking-tight dark:bg-gray-700">
+    {children}
+  </code>
+)
+
 const mdxComponents = {
   pre: CodeBlock,
   a: StandardLink,
-  inlineCode: ({ children }) => (
-    <code className="text-yellow-400">{children}</code>
-  ),
+  inlineCode: InlineCode,
 }
 
 export interface BlogPostLayoutProps {
@@ -38,8 +42,13 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({
   return (
     <MDXProvider components={mdxComponents}>
       <Layout>
-        <h1 className={styles.title}>{pageContext.frontmatter.title}</h1>
-        <time dateTime={pageContext.frontmatter.date}>
+        <h1 className="mb-4 text-5xl text-gray-800 font-medium leading-none dark:text-gray-200">
+          {pageContext.frontmatter.title}
+        </h1>
+        <time
+          className="text-gray-800 dark:text-gray-200"
+          dateTime={pageContext.frontmatter.date}
+        >
           {format(date, "MMMM do, yyyy")}{" "}
           <span className="dark:text-gray-400">
             ({formatDistanceToNow(date, { addSuffix: true })})
