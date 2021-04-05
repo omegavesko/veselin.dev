@@ -80,9 +80,7 @@ const lightTheme: PrismTheme = {
 export interface CodeBlockProps {}
 
 const CodeBlock: React.FC<CodeBlockProps> = props => {
-  const [isDarkMode, setIsDarkMode] = React.useState(
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-  )
+  const [isDarkMode, setIsDarkMode] = React.useState(false)
 
   React.useEffect(() => {
     const refreshTheme = function (
@@ -95,6 +93,8 @@ const CodeBlock: React.FC<CodeBlockProps> = props => {
     window
       .matchMedia("(prefers-color-scheme: dark)")
       .addEventListener("change", refreshTheme)
+
+    setIsDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches)
 
     return () => {
       window
