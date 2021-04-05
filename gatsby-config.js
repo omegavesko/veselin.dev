@@ -21,6 +21,12 @@ const plugins = [
       rehypePlugins: [require("rehype-slug")],
     },
   },
+  {
+    resolve: `gatsby-plugin-layout`,
+    options: {
+      component: require.resolve(`./src/components/Layout.tsx`),
+    },
+  },
 ]
 
 if (process.env.NODE_ENV === "production") {
