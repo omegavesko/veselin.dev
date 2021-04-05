@@ -1,6 +1,12 @@
 import * as React from "react"
 import Layout from "./Layout"
 import * as styles from "../styles/blog-post.module.css"
+import CodeBlock from "./blog/CodeBlock"
+import { MDXProvider } from "@mdx-js/react"
+
+const mdxComponents = {
+  pre: CodeBlock,
+}
 
 export interface BlogPostLayoutProps {
   pageContext: {
@@ -16,13 +22,15 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({
   pageContext,
 }) => {
   return (
-    <Layout>
-      <h1 className={styles.title}>{pageContext.frontmatter.title}</h1>
-      <time dateTime={pageContext.frontmatter.date}>
-        {pageContext.frontmatter.date}
-      </time>
-      <div className={styles.container}>{children}</div>
-    </Layout>
+    <MDXProvider components={mdxComponents}>
+      <Layout>
+        <h1 className={styles.title}>{pageContext.frontmatter.title}</h1>
+        <time dateTime={pageContext.frontmatter.date}>
+          {pageContext.frontmatter.date}
+        </time>
+        <div className={styles.container}>{children}</div>
+      </Layout>
+    </MDXProvider>
   )
 }
 
