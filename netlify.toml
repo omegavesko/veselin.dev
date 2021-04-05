@@ -1,0 +1,3 @@
+[[redirects]]
+  from = "https://blog.veselin.dev/*"
+  to = "/blog/:splat"
