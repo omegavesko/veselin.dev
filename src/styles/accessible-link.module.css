@@ -1,0 +1,6 @@
+.link::after {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  z-index: 10;
+}

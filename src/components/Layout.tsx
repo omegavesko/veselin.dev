@@ -6,7 +6,7 @@ import StandardLink from "./StandardLink"
 
 const Nav: React.FC = () => (
   <nav className="pb-12 2xl:absolute 2xl:left-8">
-    <Link to="/">
+    <Link to="/" className="rounded-full">
       <StaticImage
         src="../images/avatar.png"
         alt="Home"

@@ -8,6 +8,14 @@ const plugins = [
       path: `${__dirname}/src/images`,
     },
   },
+  {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `blog-posts`,
+      path: `${__dirname}/src/pages/blog`,
+      ignore: [`**/index.tsx`],
+    },
+  },
   `gatsby-transformer-sharp`,
   `gatsby-plugin-sharp`,
   `gatsby-plugin-postcss`,
@@ -27,6 +35,7 @@ const plugins = [
       component: require.resolve(`./src/components/Layout.tsx`),
     },
   },
+  `gatsby-plugin-graphql-codegen`,
 ]
 
 if (process.env.NODE_ENV === "production") {
