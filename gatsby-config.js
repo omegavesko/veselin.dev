@@ -18,6 +18,7 @@ const plugins = [
         default: require.resolve("./src/components/BlogPostLayout.tsx"),
       },
       gatsbyRemarkPlugins: [`gatsby-remark-smartypants`],
+      rehypePlugins: [require("rehype-slug")],
     },
   },
 ]

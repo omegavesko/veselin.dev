@@ -3,9 +3,11 @@ import Layout from "./Layout"
 import * as styles from "../styles/blog-post.module.css"
 import CodeBlock from "./blog/CodeBlock"
 import { MDXProvider } from "@mdx-js/react"
+import StandardLink from "./StandardLink"
 
 const mdxComponents = {
   pre: CodeBlock,
+  a: StandardLink,
 }
 
 export interface BlogPostLayoutProps {

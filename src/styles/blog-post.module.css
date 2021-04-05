@@ -3,16 +3,17 @@
 }
 
 .container {
-  @apply mt-8 flex flex-col gap-7 text-lg;
+  @apply mt-8 flex flex-col gap-7 text-lg dark:text-gray-200;
 }
 
 .container h2 {
-  @apply text-3xl text-gray-800 font-medium leading-tight dark:text-gray-200;
+  @apply text-3xl text-gray-800 font-medium leading-tight dark:text-gray-100;
 }
 
 .container ul {
   @apply flex flex-col gap-4 ml-7 list-outside list-disc;
 }
 
-.container ul li ::marker {
+.container strong {
+  @apply font-medium;
 }
