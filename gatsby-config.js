@@ -11,6 +11,14 @@ const plugins = [
   `gatsby-transformer-sharp`,
   `gatsby-plugin-sharp`,
   `gatsby-plugin-postcss`,
+  {
+    resolve: `gatsby-plugin-mdx`,
+    options: {
+      defaultLayouts: {
+        default: require.resolve("./src/components/BlogPostLayout.tsx"),
+      },
+    },
+  },
 ]
 
 if (process.env.NODE_ENV === "production") {
