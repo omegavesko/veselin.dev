@@ -1,6 +1,24 @@
 import * as React from "react"
 import Highlight, { defaultProps, PrismTheme } from "prism-react-renderer"
 import darkTheme from "prism-react-renderer/themes/vsDark"
+import Prism from "prism-react-renderer/prism"
+;(typeof global !== "undefined"
+  ? (global as any)
+  : (window as any)
+).Prism = Prism
+
+// Import additional language definitions not included by default in prism-react-renderer
+// https://github.com/FormidableLabs/prism-react-renderer#faq
+
+require("prismjs/components/prism-php")
+require("prismjs/components/prism-csharp")
+require("prismjs/components/prism-docker")
+require("prismjs/components/prism-http")
+require("prismjs/components/prism-ini")
+require("prismjs/components/prism-neon")
+require("prismjs/components/prism-nginx")
+require("prismjs/components/prism-twig")
+require("prismjs/components/prism-toml")
 
 const lightTheme: PrismTheme = {
   plain: {
