@@ -1,5 +1,5 @@
 .title {
-  @apply mb-1 text-5xl text-gray-800 font-medium leading-tight dark:text-gray-200;
+  @apply mb-4 text-5xl text-gray-800 font-medium leading-none dark:text-gray-200;
 }
 
 .container {
