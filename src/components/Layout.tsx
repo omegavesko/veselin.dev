@@ -1,19 +1,47 @@
-import { Link } from "gatsby"
+import { Link, GatsbyLinkProps } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import * as React from "react"
 import { Helmet } from "react-helmet"
 import StandardLink from "./StandardLink"
+import { HiArrowNarrowLeft } from "react-icons/hi"
+import { useLocation } from "@reach/router"
+
+const NavLink: React.FC<GatsbyLinkProps<any>> = ({ children, ...props }) => {
+  const location = useLocation()
+
+  const isCurrent = () => {
+    if (props.to === "/") {
+      return location.pathname === props.to
+    } else {
+      return location.pathname.startsWith(props.to)
+    }
+  }
+
+  return (
+    <Link className="flex items-center gap-2 text-xl" {...(props as any)}>
+      {children}
+      {isCurrent() && (
+        <HiArrowNarrowLeft
+          aria-label=""
+          className="hidden dark:text-gray-500 2xl:inline"
+        />
+      )}
+    </Link>
+  )
+}
 
 const Nav: React.FC = () => (
-  <nav className="pb-12 2xl:absolute 2xl:left-8">
+  <nav className="pb-12 flex items-center gap-4 2xl:absolute 2xl:left-8 2xl:flex-col 2xl:items-stretch 2xl:w-48">
     <Link to="/" className="rounded-full">
       <StaticImage
         src="../images/avatar.png"
         alt="Home"
         height={64}
-        className="rounded-full h-12 w-12 2xl:h-16 2xl:w-16"
+        className="mr-4 rounded-full h-12 w-12 2xl:h-16 2xl:w-16 2xl:mx-0 2xl:mb-4"
       />
     </Link>
+    <NavLink to="/">Home</NavLink>
+    <NavLink to="/blog">Blog</NavLink>
   </nav>
 )
 
