@@ -17,6 +17,7 @@ const plugins = [
       defaultLayouts: {
         default: require.resolve("./src/components/BlogPostLayout.tsx"),
       },
+      gatsbyRemarkPlugins: [`gatsby-remark-smartypants`],
     },
   },
 ]
