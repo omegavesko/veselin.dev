@@ -1,11 +1,3 @@
-/* .title {
-  @apply mb-4 text-5xl text-gray-800 font-medium leading-none dark:text-gray-200;
-} */
-
-/* .date {
-  @apply text-gray-800 dark:text-gray-200;
-} */
-
 .container {
   @apply mt-8 flex flex-col gap-7 text-lg dark:text-gray-200;
 }
