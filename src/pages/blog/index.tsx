@@ -36,12 +36,9 @@ const BlogIndexPage: React.FC<BlogIndexPageProps> = () => {
                 {post.frontmatter.title}
               </h2>
             </AccessibleLink>
-            <time
-              className="mb-1 text-sm text-gray-800 dark:text-gray-200"
-              dateTime={post.frontmatter.date}
-            >
+            <time className="mb-1 text-sm" dateTime={post.frontmatter.date}>
               {format(parseISO(post.frontmatter.date), "MMMM do, yyyy")}{" "}
-              <span className="dark:text-gray-400">
+              <span className="text-gray-500 dark:text-gray-400">
                 (
                 {formatDistanceToNow(parseISO(post.frontmatter.date), {
                   addSuffix: true,
@@ -49,7 +46,9 @@ const BlogIndexPage: React.FC<BlogIndexPageProps> = () => {
                 )
               </span>
             </time>
-            <p className="text-base dark:text-gray-400">{post.excerpt}</p>
+            <p className="text-base text-gray-500 dark:text-gray-400">
+              {post.excerpt}
+            </p>
           </div>
         ))}
       </div>

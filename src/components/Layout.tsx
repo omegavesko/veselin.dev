@@ -23,7 +23,7 @@ const NavLink: React.FC<GatsbyLinkProps<any>> = ({ children, ...props }) => {
       {isCurrent() && (
         <HiArrowNarrowLeft
           aria-label=""
-          className="hidden dark:text-gray-500 2xl:inline"
+          className="hidden text-gray-400 dark:text-gray-500 2xl:inline"
         />
       )}
     </Link>
