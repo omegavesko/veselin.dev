@@ -672,6 +672,12 @@ export type SitePluginPluginOptions = {
   mediaTypes?: Maybe<Array<Maybe<Scalars['String']>>>;
   root?: Maybe<Scalars['String']>;
   component?: Maybe<Scalars['String']>;
+  excludePaths?: Maybe<Array<Maybe<Scalars['String']>>>;
+  height?: Maybe<Scalars['Int']>;
+  prependToBody?: Maybe<Scalars['Boolean']>;
+  color?: Maybe<Scalars['String']>;
+  footerHeight?: Maybe<Scalars['Int']>;
+  headerHeight?: Maybe<Scalars['Int']>;
   pathCheck?: Maybe<Scalars['Boolean']>;
   allExtensions?: Maybe<Scalars['Boolean']>;
   isTSX?: Maybe<Scalars['Boolean']>;
@@ -2025,6 +2031,12 @@ export type SitePluginPluginOptionsFilterInput = {
   mediaTypes?: Maybe<StringQueryOperatorInput>;
   root?: Maybe<StringQueryOperatorInput>;
   component?: Maybe<StringQueryOperatorInput>;
+  excludePaths?: Maybe<StringQueryOperatorInput>;
+  height?: Maybe<IntQueryOperatorInput>;
+  prependToBody?: Maybe<BooleanQueryOperatorInput>;
+  color?: Maybe<StringQueryOperatorInput>;
+  footerHeight?: Maybe<IntQueryOperatorInput>;
+  headerHeight?: Maybe<IntQueryOperatorInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
   allExtensions?: Maybe<BooleanQueryOperatorInput>;
   isTSX?: Maybe<BooleanQueryOperatorInput>;
@@ -2252,6 +2264,12 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___mediaTypes'
   | 'pluginCreator___pluginOptions___root'
   | 'pluginCreator___pluginOptions___component'
+  | 'pluginCreator___pluginOptions___excludePaths'
+  | 'pluginCreator___pluginOptions___height'
+  | 'pluginCreator___pluginOptions___prependToBody'
+  | 'pluginCreator___pluginOptions___color'
+  | 'pluginCreator___pluginOptions___footerHeight'
+  | 'pluginCreator___pluginOptions___headerHeight'
   | 'pluginCreator___pluginOptions___pathCheck'
   | 'pluginCreator___pluginOptions___allExtensions'
   | 'pluginCreator___pluginOptions___isTSX'
@@ -2886,6 +2904,12 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___mediaTypes'
   | 'pluginOptions___root'
   | 'pluginOptions___component'
+  | 'pluginOptions___excludePaths'
+  | 'pluginOptions___height'
+  | 'pluginOptions___prependToBody'
+  | 'pluginOptions___color'
+  | 'pluginOptions___footerHeight'
+  | 'pluginOptions___headerHeight'
   | 'pluginOptions___pathCheck'
   | 'pluginOptions___allExtensions'
   | 'pluginOptions___isTSX'
