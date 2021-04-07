@@ -46,3 +46,7 @@ span.highlight {
     @apply bg-gray-200 !important;
   }
 }
+
+.nav-avatar picture {
+  @apply rounded-full;
+}

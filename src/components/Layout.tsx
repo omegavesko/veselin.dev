@@ -30,20 +30,42 @@ const NavLink: React.FC<GatsbyLinkProps<any>> = ({ children, ...props }) => {
   )
 }
 
-const Nav: React.FC = () => (
-  <nav className="pb-12 flex items-center gap-4 2xl:absolute 2xl:left-8 2xl:flex-col 2xl:items-stretch 2xl:w-48">
-    <Link to="/" className="rounded-full">
-      <StaticImage
-        src="../images/avatar.png"
-        alt="Home"
-        height={64}
-        className="mr-4 rounded-full h-12 w-12 2xl:h-16 2xl:w-16 2xl:mx-0 2xl:mb-4"
-      />
-    </Link>
-    <NavLink to="/">Home</NavLink>
-    <NavLink to="/blog">Blog</NavLink>
-  </nav>
-)
+const Nav: React.FC = () => {
+  const [avatarAngle, setAvatarAngle] = React.useState(0)
+
+  React.useEffect(() => {
+    let handle: number = null
+
+    const refreshAvatarAngle = () => {
+      setAvatarAngle(0.25 * window.scrollY)
+      handle = requestAnimationFrame(refreshAvatarAngle)
+    }
+
+    refreshAvatarAngle()
+
+    return () => {
+      if (handle !== null) cancelAnimationFrame(handle)
+    }
+  }, [])
+
+  return (
+    <nav className="pb-12 flex items-center gap-4 2xl:fixed 2xl:left-8 2xl:flex-col 2xl:items-stretch 2xl:w-48">
+      <Link to="/">
+        <StaticImage
+          src="../images/avatar.png"
+          alt="Home"
+          height={64}
+          className="nav-avatar mr-4 rounded-full h-12 w-12 2xl:h-16 2xl:w-16 2xl:mx-0 2xl:mb-4"
+          style={{
+            transform: `rotate(${avatarAngle % 360}deg)`,
+          }}
+        />
+      </Link>
+      <NavLink to="/">Home</NavLink>
+      <NavLink to="/blog">Blog</NavLink>
+    </nav>
+  )
+}
 
 export interface LayoutProps {}
 
