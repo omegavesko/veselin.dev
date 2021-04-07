@@ -1,4 +1,5 @@
 [build]
+  command = "yarn build && yarn build:lambda"
   functions = "lambda-output"
 
 [[redirects]]
