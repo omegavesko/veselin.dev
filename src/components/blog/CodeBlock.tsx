@@ -116,6 +116,8 @@ const CodeBlock: React.FC<CodeBlockProps> = props => {
       .matchMedia("(prefers-color-scheme: dark)")
       .addEventListener("change", refreshTheme)
 
+    setIsDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches)
+
     return () => {
       window
         .matchMedia("(prefers-color-scheme: dark)")
