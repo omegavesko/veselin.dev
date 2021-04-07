@@ -5,13 +5,17 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@babel/preset-typescript": "^7.13.0",
     "@fontsource/fira-code": "^4.2.2",
     "@fontsource/fira-sans": "^4.2.2",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
+    "@types/aws-lambda": "^8.10.75",
+    "@types/node": "^14.14.37",
     "@types/react-helmet": "^6.1.0",
     "@types/tailwindcss": "^2.0.2",
     "autoprefixer": "^10.2.5",
+    "babel-preset-gatsby": "^1.2.0",
     "date-fns": "^2.19.0",
     "gatsby": "^3.0.1",
     "gatsby-plugin-gatsby-cloud": "^2.0.0",
@@ -28,6 +32,8 @@
     "gatsby-remark-smartypants": "^3.2.0",
     "gatsby-source-filesystem": "^3.0.0",
     "gatsby-transformer-sharp": "^3.0.0",
+    "netlify-cli": "^3.16.0",
+    "netlify-lambda": "^2.0.3",
     "postcss": "^8.2.8",
     "preact": "^10.5.13",
     "preact-render-to-string": "^5.1.16",
@@ -52,9 +58,12 @@
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
+    "build:lambda": "netlify-lambda build src/functions",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
+    "start": "netlify dev",
+    "start:gatsby": "npm run develop",
+    "start:lambda": "netlify-lambda serve src/functions",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
@@ -65,5 +74,10 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
-  }
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead",
+    "not op_mini all"
+  ]
 }
