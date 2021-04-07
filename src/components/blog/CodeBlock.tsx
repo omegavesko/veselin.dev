@@ -123,7 +123,7 @@ const CodeBlock: React.FC<CodeBlockProps> = props => {
         .matchMedia("(prefers-color-scheme: dark)")
         .removeEventListener("change", refreshTheme)
     }
-  }, [])
+  }, [setIsDarkMode])
 
   const theme = isDarkMode ? darkTheme : lightTheme
 
