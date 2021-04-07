@@ -74,10 +74,5 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
-  },
-  "browserslist": [
-    "last 2 versions",
-    "not dead",
-    "not op_mini all"
-  ]
+  }
 }
