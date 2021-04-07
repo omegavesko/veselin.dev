@@ -37,16 +37,6 @@ span.highlight {
   }
 }
 
-#gatsby-plugin-page-progress {
-  @apply bg-gray-800 !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  #gatsby-plugin-page-progress {
-    @apply bg-gray-200 !important;
-  }
-}
-
 .nav-avatar picture {
   @apply rounded-full;
 }

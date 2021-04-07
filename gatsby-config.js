@@ -1,5 +1,3 @@
-const colors = require("tailwindcss/colors")
-
 const plugins = [
   `gatsby-plugin-react-helmet`,
   `gatsby-plugin-image`,
@@ -38,18 +36,6 @@ const plugins = [
     },
   },
   `gatsby-plugin-graphql-codegen`,
-  {
-    resolve: "gatsby-plugin-page-progress",
-    options: {
-      includePaths: ["/", { regex: "^/blog" }],
-      excludePaths: ["/blog"],
-      height: 3,
-      prependToBody: false,
-      color: colors.coolGray[800],
-      footerHeight: 200,
-      headerHeight: 0,
-    },
-  },
 ]
 
 if (process.env.NODE_ENV === "production") {
