@@ -51,6 +51,7 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({
 
         <meta property="og:type" content="article" />
         <meta property="og:title" content={pageContext.frontmatter.title} />
+        <meta name="description" content="" />
         <meta
           property="article:published_time"
           content={pageContext.frontmatter.date}
