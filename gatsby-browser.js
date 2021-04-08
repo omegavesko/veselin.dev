@@ -10,8 +10,6 @@ import "@fontsource/fira-sans"
 import "@fontsource/fira-sans/500.css"
 import "@fontsource/fira-code"
 
-import axios from "axios"
-
 export const onRouteUpdate = ({ location }) => {
   if (process.env.NODE_ENV !== `production`) {
     return null
@@ -22,13 +20,19 @@ export const onRouteUpdate = ({ location }) => {
       ? location.pathname + location.search + location.hash
       : undefined
 
-    axios.post("/.netlify/functions/event", {
-      type: "pageview",
-      params: {
-        dh: window.location.hostname,
-        dp: pagePath,
-        dt: document.title,
+    fetch("/.netlify/functions/event", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        type: "pageview",
+        params: {
+          dh: window.location.hostname,
+          dp: pagePath,
+          dt: document.title,
+        },
+      }),
     })
   }
 
