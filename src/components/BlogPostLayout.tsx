@@ -54,6 +54,13 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({
         />
         <meta property="og:image:width" content="2048" />
         <meta property="og:image:height" content="1170" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content="@omegavesko" />
+        <meta name="twitter:title" content={pageContext.frontmatter.title} />
+        <meta
+          name="twitter:image"
+          content={buildOgImageUrl(pageContext.frontmatter.title)}
+        />
       </Helmet>
       <MDXProvider components={mdxComponents}>
         <h1 className="mb-4 text-5xl text-gray-800 font-medium leading-none dark:text-gray-200">
