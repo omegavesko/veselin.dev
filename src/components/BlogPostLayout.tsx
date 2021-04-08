@@ -11,6 +11,7 @@ import {
   differenceInYears,
 } from "date-fns"
 import { Helmet } from "react-helmet"
+import { buildOgImageUrl } from "../utils/ogImage"
 
 const InlineCode: React.FC = ({ children }) => (
   <code
@@ -47,6 +48,12 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({
     <>
       <Helmet>
         <title>{pageContext.frontmatter.title}</title>
+        <meta
+          property="og:image"
+          content={buildOgImageUrl(pageContext.frontmatter.title)}
+        />
+        <meta property="og:image:width" content="2048" />
+        <meta property="og:image:height" content="1170" />
       </Helmet>
       <MDXProvider components={mdxComponents}>
         <h1 className="mb-4 text-5xl text-gray-800 font-medium leading-none dark:text-gray-200">
