@@ -43,7 +43,8 @@
     "tailwindcss": "^2.0.3"
   },
   "devDependencies": {
-    "babel-preset-gatsby": "^1.2.0",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.13.0",
     "netlify-cli": "^3.16.0",
     "netlify-lambda": "^2.0.3",
