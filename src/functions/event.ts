@@ -17,9 +17,8 @@ const handler: Handler<APIGatewayEvent, Response> = async event => {
   const analyticsRequestBody = new URLSearchParams()
   analyticsRequestBody.append("v", "1")
 
-  // Override IP and user agent
+  // Override user agent
 
-  analyticsRequestBody.append("uip", event.headers["client-ip"])
   analyticsRequestBody.append("ua", event.headers["user-agent"])
 
   // Set event data
