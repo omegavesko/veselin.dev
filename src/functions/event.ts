@@ -33,10 +33,16 @@ const handler: Handler<APIGatewayEvent, Response> = async event => {
 
   // Send event to Google Analytics
 
-  await axios.post(
+  console.log("Sending request to Google Analytics:")
+  console.log(analyticsRequestBody)
+
+  const response = await axios.post(
     "https://www.google-analytics.com/collect",
     analyticsRequestBody.toString()
   )
+
+  console.log("Received response:")
+  console.log(response)
 
   return { statusCode: 200 }
 }
