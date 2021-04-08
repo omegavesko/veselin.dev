@@ -48,14 +48,21 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({
     <>
       <Helmet>
         <title>{pageContext.frontmatter.title}</title>
+
+        <meta property="og:type" content="article" />
+        <meta
+          property="article:published_time"
+          content={pageContext.frontmatter.date}
+        />
+        <meta property="article:author" content="https://veselin.dev" />
         <meta
           property="og:image"
           content={buildOgImageUrl(pageContext.frontmatter.title)}
         />
         <meta property="og:image:width" content="2048" />
         <meta property="og:image:height" content="1170" />
+
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:creator" content="@omegavesko" />
         <meta name="twitter:title" content={pageContext.frontmatter.title} />
         <meta
           name="twitter:image"

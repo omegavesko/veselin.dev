@@ -8870,6 +8870,13 @@ gatsby-page-utils@^1.0.0:
     lodash "^4.17.20"
     micromatch "^4.0.2"
 
+gatsby-plugin-canonical-urls@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-canonical-urls/-/gatsby-plugin-canonical-urls-3.2.0.tgz#a463ece7fc9d0aff3a1ec03c587ee7cb0fb22392"
+  integrity sha512-FoJbsuZsnznHmPJn6wL86VuxcMYzO4JLU867VAI9yRlaViz6sjy9gE4xxJCsYqhIh3a0L/KLRlt5vIU7pWeFDw==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+
 gatsby-plugin-gatsby-cloud@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-gatsby-cloud/-/gatsby-plugin-gatsby-cloud-2.0.0.tgz#fadf2e87128ef570f82148fd98938c92291b1fb9"

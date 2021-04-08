@@ -80,6 +80,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       >
         <title>Veselin Romić</title>
         <meta name="description" content="Turning ☕ into 💾 since 19XX" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Veselin Romić" />
+        <meta property="og:site_name" content="veselin.dev" />
+
+        <meta name="twitter:creator" content="@omegavesko" />
       </Helmet>
       <div className="max-w-3xl mx-auto px-8 pt-8 pb-28 2xl:pt-12">
         <Nav />
