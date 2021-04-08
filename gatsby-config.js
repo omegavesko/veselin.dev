@@ -36,6 +36,13 @@ const plugins = [
     },
   },
   `gatsby-plugin-graphql-codegen`,
+  {
+    resolve: `gatsby-plugin-canonical-urls`,
+    options: {
+      siteUrl: `https://veselin.dev`,
+      stripQueryString: true,
+    },
+  },
 ]
 
 if (process.env.NODE_ENV === "production") {
