@@ -17,6 +17,10 @@ const handler: Handler<APIGatewayEvent, Response> = async event => {
   const analyticsRequestBody = new URLSearchParams()
   analyticsRequestBody.append("v", "1")
 
+  // GA makes us send a cid parameter, so we send a hardcoded ID
+  // because we don't actually want to track users
+  analyticsRequestBody.append("cid", "35009a79-1a05-49d7-b876-2b884d0f825b")
+
   // Override user agent
 
   analyticsRequestBody.append("ua", event.headers["user-agent"])
