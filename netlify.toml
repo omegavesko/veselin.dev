@@ -1,0 +1,7 @@
+[build]
+  command = "yarn build && yarn build:lambda"
+  functions = "lambda-output"
+
+[[redirects]]
+  from = "https://blog.veselin.dev/*"
+  to = "/blog/:splat"

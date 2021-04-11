@@ -1,0 +1,15 @@
+.container {
+  @apply mt-8 flex flex-col gap-7 text-lg;
+}
+
+.container h2 {
+  @apply text-3xl font-medium leading-tight;
+}
+
+.container ul {
+  @apply flex flex-col gap-4 ml-7 list-outside list-disc;
+}
+
+.container strong {
+  @apply font-medium;
+}

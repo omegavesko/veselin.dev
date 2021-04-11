@@ -4,12 +4,15 @@ services:
   site:
     image: node:14
     ports:
-      - 8000:8000
+      - 8888:8888
       - 8001:8001
     working_dir: /home/node/app
     user: "1000"
-    command: /bin/sh -c "yarn && yarn develop -H 0.0.0.0"
+    command: /bin/sh -c "yarn && yarn netlify dev"
     volumes:
       - ./:/home/node/app
     environment:
       INTERNAL_STATUS_PORT: 8001
+      NETLIFY_AUTH_TOKEN: ~
+      GOOGLE_ANALYTICS_TRACKING_ID: ~
+    tty: true
