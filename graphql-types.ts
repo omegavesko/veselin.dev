@@ -3259,7 +3259,7 @@ export type BlogPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type BlogPostsQuery = { posts: { nodes: Array<(
-      Pick<Mdx, 'slug' | 'excerpt'>
+      Pick<Mdx, 'slug' | 'excerpt' | 'timeToRead'>
       & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date'>> }
     )> } };
 
@@ -3269,7 +3269,7 @@ export type MdxQueryVariables = Exact<{
 
 
 export type MdxQuery = { mdx?: Maybe<(
-    Pick<Mdx, 'id' | 'body'>
+    Pick<Mdx, 'id' | 'body' | 'timeToRead'>
     & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'date'>> }
   )> };
 

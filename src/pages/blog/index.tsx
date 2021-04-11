@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import * as React from "react"
 import { BlogPostsQuery } from "../../../graphql-types"
 import AccessibleLink from "../../components/AccessibleLink"
+import ReadingTime from "../../components/ReadingTime"
 
 export interface BlogIndexPageProps {}
 
@@ -16,6 +17,7 @@ const BlogIndexPage: React.FC<BlogIndexPageProps> = () => {
         nodes {
           slug
           excerpt
+          timeToRead
           frontmatter {
             title
             date
@@ -36,16 +38,23 @@ const BlogIndexPage: React.FC<BlogIndexPageProps> = () => {
                 {post.frontmatter.title}
               </h2>
             </AccessibleLink>
-            <time className="mb-1 text-sm" dateTime={post.frontmatter.date}>
-              {format(parseISO(post.frontmatter.date), "MMMM do, yyyy")}{" "}
-              <span className="text-gray-500 dark:text-gray-400">
-                (
-                {formatDistanceToNow(parseISO(post.frontmatter.date), {
-                  addSuffix: true,
-                })}
-                )
+            <div className="mb-1 text-sm">
+              <time dateTime={post.frontmatter.date}>
+                {format(parseISO(post.frontmatter.date), "MMMM do, yyyy")}{" "}
+                <span className="text-gray-500 dark:text-gray-400">
+                  (
+                  {formatDistanceToNow(parseISO(post.frontmatter.date), {
+                    addSuffix: true,
+                  })}
+                  )
+                </span>
+              </time>
+              <span className="mx-2 text-gray-500 dark:text-gray-400">
+                &middot;
               </span>
-            </time>
+              <ReadingTime minutes={post.timeToRead} />
+            </div>
+
             <p className="text-base text-gray-500 dark:text-gray-400">
               {post.excerpt}
             </p>

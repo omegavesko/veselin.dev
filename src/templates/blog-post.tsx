@@ -15,6 +15,7 @@ import Links from "../components/Links"
 import { graphql } from "gatsby"
 import { MdxQuery } from "../../graphql-types"
 import { MDXRenderer } from "gatsby-plugin-mdx"
+import ReadingTime from "../components/ReadingTime"
 
 const InlineCode: React.FC = ({ children }) => (
   <code
@@ -35,9 +36,11 @@ export interface BlogPostLayoutProps {
   data: MdxQuery
 }
 
-const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ children, data }) => {
+const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ data }) => {
   const date = parseISO(data.mdx.frontmatter.date)
   const showDateWarning = differenceInYears(new Date(), date) >= 2
+
+  const coffeeCount = Math.max(1, Math.floor(data.mdx.timeToRead / 5))
 
   return (
     <>
@@ -76,6 +79,8 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ children, data }) => {
             ({formatDistanceToNow(date, { addSuffix: true })})
           </span>
         </time>
+        <span className="mx-2 text-gray-500 dark:text-gray-400">&middot;</span>
+        <ReadingTime minutes={data.mdx.timeToRead} />
         {showDateWarning && (
           <div className="mt-8 py-3 px-4 rounded-xl bg-red-100 text-red-900 dark:bg-red-900 dark:text-white">
             Be careful! This post is{" "}
@@ -107,6 +112,7 @@ export const query = graphql`
     mdx(id: { eq: $id }) {
       id
       body
+      timeToRead
       frontmatter {
         title
         date
