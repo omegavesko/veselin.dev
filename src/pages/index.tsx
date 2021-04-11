@@ -1,36 +1,8 @@
 import * as React from "react"
-import { SiLinkedin, SiGithub, SiGmail, SiTwitter } from "react-icons/si"
 import Helmet from "react-helmet"
-import { StaticImage } from "gatsby-plugin-image"
-import { Link } from "gatsby"
+import Links from "../components/Links"
 
 export interface IndexPageProps {}
-
-const Links: React.FC = () => (
-  <ul className="flex flex-col gap-2 flex-wrap lg:flex-row lg:gap-x-5">
-    <a href="https://www.linkedin.com/in/veselinromic/">
-      <LinksItem icon={<SiLinkedin />} name={"veselinromic"} />
-    </a>
-    <a href="https://github.com/omegavesko">
-      <LinksItem icon={<SiGithub />} name={"omegavesko"} />
-    </a>
-    <a href="https://twitter.com/omegavesko">
-      <LinksItem icon={<SiTwitter />} name={"omegavesko"} />
-    </a>
-    <a href="mailto:hi@veselin.dev">
-      <LinksItem icon={<SiGmail />} name={"hi@veselin.dev"} />
-    </a>
-  </ul>
-)
-
-const LinksItem: React.FC<{
-  icon: React.ReactNode
-  name: React.ReactNode
-}> = ({ icon, name }) => (
-  <li className="flex items-center gap-3 text-lg text-gray-800 font-normal transition dark:text-gray-200 hover:text-gray-500 dark:hover:text-gray-300 lg:gap-2 lg:text-base">
-    {icon} {name}
-  </li>
-)
 
 const Section: React.FC<{ title: React.ReactNode }> = ({ title, children }) => (
   <section>
@@ -114,19 +86,6 @@ const Confidential: React.FC = () => (
   <span className="inline-block px-2 py-1 text-gray-800 bg-gray-100 text-opacity-60 rounded dark:text-gray-200 dark:bg-gray-700 dark:bg-opacity-50">
     Confidential
   </span>
-)
-
-const Nav: React.FC = () => (
-  <nav className="pb-12 2xl:absolute 2xl:left-8">
-    <Link to="/">
-      <StaticImage
-        src="../images/avatar.png"
-        alt="Home"
-        height={64}
-        className="rounded-full h-12 w-12 2xl:h-16 2xl:w-16"
-      />
-    </Link>
-  </nav>
 )
 
 const IndexPage: React.FC<IndexPageProps> = () => {

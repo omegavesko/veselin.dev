@@ -12,6 +12,7 @@ import {
 } from "date-fns"
 import { Helmet } from "react-helmet"
 import { buildOgImageUrl } from "../utils/ogImage"
+import Links from "./Links"
 
 const InlineCode: React.FC = ({ children }) => (
   <code
@@ -89,7 +90,15 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({
             before using it, especially if the post contains code samples.
           </div>
         )}
-        <div className={styles.container}>{children}</div>
+        <div className={`${styles.container} mb-12`}>{children}</div>
+        <div>
+          <p className="mb-4 text-gray-500 dark:text-gray-400">
+            Thanks for reading all the way through! 🥰 If you'd like to get in
+            touch or check out what else I've worked on, here's some links you
+            might be interested in.
+          </p>
+          <Links />
+        </div>
       </MDXProvider>
     </>
   )
