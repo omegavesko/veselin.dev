@@ -12,7 +12,7 @@ const plugins = [
     resolve: `gatsby-source-filesystem`,
     options: {
       name: `blog-posts`,
-      path: `${__dirname}/src/pages/blog`,
+      path: `${__dirname}/src/blog-posts`,
       ignore: [`**/index.tsx`],
     },
   },
@@ -22,9 +22,6 @@ const plugins = [
   {
     resolve: `gatsby-plugin-mdx`,
     options: {
-      defaultLayouts: {
-        default: require.resolve("./src/components/BlogPostLayout.tsx"),
-      },
       gatsbyRemarkPlugins: [`gatsby-remark-smartypants`],
       rehypePlugins: [require("rehype-slug")],
     },

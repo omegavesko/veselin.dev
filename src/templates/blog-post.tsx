@@ -1,9 +1,8 @@
 import * as React from "react"
-import Layout from "./Layout"
 import * as styles from "../styles/blog-post.module.css"
-import CodeBlock from "./blog/CodeBlock"
+import CodeBlock from "../components/blog/CodeBlock"
 import { MDXProvider } from "@mdx-js/react"
-import StandardLink from "./StandardLink"
+import StandardLink from "../components/StandardLink"
 import {
   format,
   parseISO,
@@ -12,7 +11,10 @@ import {
 } from "date-fns"
 import { Helmet } from "react-helmet"
 import { buildOgImageUrl } from "../utils/ogImage"
-import Links from "./Links"
+import Links from "../components/Links"
+import { graphql } from "gatsby"
+import { MdxQuery } from "../../graphql-types"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 
 const InlineCode: React.FC = ({ children }) => (
   <code
@@ -30,53 +32,45 @@ const mdxComponents = {
 }
 
 export interface BlogPostLayoutProps {
-  pageContext: {
-    frontmatter: {
-      title: string
-      date: string
-    }
-  }
+  data: MdxQuery
 }
 
-const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({
-  children,
-  pageContext,
-}) => {
-  const date = parseISO(pageContext.frontmatter.date)
+const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ children, data }) => {
+  const date = parseISO(data.mdx.frontmatter.date)
   const showDateWarning = differenceInYears(new Date(), date) >= 2
 
   return (
     <>
       <Helmet>
-        <title>{pageContext.frontmatter.title}</title>
+        <title>{data.mdx.frontmatter.title}</title>
 
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={pageContext.frontmatter.title} />
+        <meta property="og:title" content={data.mdx.frontmatter.title} />
         <meta name="description" content="" />
         <meta
           property="article:published_time"
-          content={pageContext.frontmatter.date}
+          content={data.mdx.frontmatter.date}
         />
         <meta property="article:author" content="https://veselin.dev" />
         <meta
           property="og:image"
-          content={buildOgImageUrl(pageContext.frontmatter.title)}
+          content={buildOgImageUrl(data.mdx.frontmatter.title)}
         />
         <meta property="og:image:width" content="2048" />
         <meta property="og:image:height" content="1170" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={pageContext.frontmatter.title} />
+        <meta name="twitter:title" content={data.mdx.frontmatter.title} />
         <meta
           name="twitter:image"
-          content={buildOgImageUrl(pageContext.frontmatter.title)}
+          content={buildOgImageUrl(data.mdx.frontmatter.title)}
         />
       </Helmet>
       <MDXProvider components={mdxComponents}>
         <h1 className="mb-4 text-5xl text-gray-800 font-medium leading-none dark:text-gray-200">
-          {pageContext.frontmatter.title}
+          {data.mdx.frontmatter.title}
         </h1>
-        <time dateTime={pageContext.frontmatter.date}>
+        <time dateTime={data.mdx.frontmatter.date}>
           {format(date, "MMMM do, yyyy")}{" "}
           <span className="text-gray-500 dark:text-gray-400">
             ({formatDistanceToNow(date, { addSuffix: true })})
@@ -90,7 +84,9 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({
             before using it, especially if the post contains code samples.
           </div>
         )}
-        <div className={`${styles.container} mb-12`}>{children}</div>
+        <div className={`${styles.container} mb-12`}>
+          <MDXRenderer>{data.mdx.body}</MDXRenderer>
+        </div>
         <div>
           <p className="mb-4 text-gray-500 dark:text-gray-400">
             Thanks for reading all the way through! 🥰 If you'd like to get in
@@ -105,3 +101,16 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({
 }
 
 export default BlogPostLayout
+
+export const query = graphql`
+  query MDX($id: String!) {
+    mdx(id: { eq: $id }) {
+      id
+      body
+      frontmatter {
+        title
+        date
+      }
+    }
+  }
+`

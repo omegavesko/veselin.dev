@@ -10,7 +10,7 @@ const BlogIndexPage: React.FC<BlogIndexPageProps> = () => {
   const { posts } = useStaticQuery<BlogPostsQuery>(graphql`
     query BlogPosts {
       posts: allMdx(
-        filter: { fileAbsolutePath: { glob: "**/pages/blog/*.mdx" } }
+        filter: { fileAbsolutePath: { glob: "**/blog-posts/*.mdx" } }
         sort: { fields: frontmatter___date, order: DESC }
       ) {
         nodes {
