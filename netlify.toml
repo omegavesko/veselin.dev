@@ -5,3 +5,7 @@
 [[redirects]]
   from = "https://blog.veselin.dev/*"
   to = "https://veselin.dev/blog/:splat"
+
+[[redirects]]
+  from = "https://blog.veselin.dev/"
+  to = "https://veselin.dev/"
