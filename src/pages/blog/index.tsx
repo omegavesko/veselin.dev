@@ -1,6 +1,7 @@
 import { format, formatDistanceToNow, parseISO } from "date-fns"
 import { graphql, useStaticQuery } from "gatsby"
 import * as React from "react"
+import { Helmet } from "react-helmet"
 import { BlogPostsQuery } from "../../../graphql-types"
 import AccessibleLink from "../../components/AccessibleLink"
 import ReadingTime from "../../components/ReadingTime"
@@ -29,6 +30,9 @@ const BlogIndexPage: React.FC<BlogIndexPageProps> = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Blog</title>
+      </Helmet>
       <h1 className="mb-16 text-5xl font-medium">Blog</h1>
       <div className="flex flex-col gap-8">
         {posts.nodes.map(post => (
