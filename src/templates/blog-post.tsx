@@ -70,7 +70,7 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ data }) => {
         />
       </Helmet>
       <MDXProvider components={mdxComponents}>
-        <h1 className="mb-4 text-5xl text-gray-800 font-medium leading-none dark:text-gray-200">
+        <h1 className="mb-4 text-5xl text-gray-800 font-medium leading-tight dark:text-gray-200">
           {data.mdx.frontmatter.title}
         </h1>
         <time dateTime={data.mdx.frontmatter.date}>
