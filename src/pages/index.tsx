@@ -116,10 +116,10 @@ const IndexPage: React.FC<IndexPageProps> = () => {
         </TextSection>
         <TextSection title="About you (hopefully?)">
           <p>
-            You're a company with a{" "}
-            <Highlight>sustainable, ethical business model</Highlight> that
-            doesn't exploit your employees, your users, or the planet (and maybe
-            even does some good).
+            You're a company with an{" "}
+            <Highlight>ethical business model</Highlight> that doesn't exploit
+            your employees, your users, or the planet (and maybe even does some
+            good).
           </p>
           <p>
             You know that the best products are made by{" "}
@@ -131,16 +131,11 @@ const IndexPage: React.FC<IndexPageProps> = () => {
           <p>
             I specialize in building APIs, websites and cutting-edge web
             applications using tools like <Highlight>modern PHP</Highlight> and{" "}
-            <Highlight>JavaScript</Highlight>.
-          </p>
-          <p>
-            While I love the power of the modern JS ecosystem, I strongly prefer
-            actually writing code in <Highlight>TypeScript</Highlight>, rather
-            than vanilla JS.{" "}
+            <Highlight>JavaScript</Highlight>{" "}
             <span className="text-base text-gray-500 dark:text-gray-400">
-              (For what it's worth, most of the JS community seems to agree with
-              me on this these days.)
+              (preferably, with TypeScript)
             </span>
+            .
           </p>
           <p>
             I have years of experience building fast, stable and maintainable
@@ -154,7 +149,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
             on top of it (<Highlight>Gatsby</Highlight>,{" "}
             <Highlight>Next.js</Highlight>, etc.), but I'm also open to working
             with other frameworks, like <Highlight>Vue.js</Highlight> or{" "}
-            <Highlight>Svelte</Highlight>.
+            <Highlight>Angular</Highlight>.
           </p>
           <p>
             Or course, I'm also{" "}
