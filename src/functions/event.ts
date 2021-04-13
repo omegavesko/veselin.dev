@@ -17,6 +17,7 @@ const handler: Handler<APIGatewayEvent, Response> = async event => {
 
   const analyticsRequestBody = new URLSearchParams()
   analyticsRequestBody.append("v", "1")
+  analyticsRequestBody.append("aip", "1") // enable IP anonymization for all requests
 
   // GA makes us send a cid parameter, so we send a new UUID every time
   // because we don't actually want to track users across requests
@@ -25,6 +26,10 @@ const handler: Handler<APIGatewayEvent, Response> = async event => {
   // Override user agent
 
   analyticsRequestBody.append("ua", event.headers["user-agent"])
+
+  // Override user IP (this will be anonymized)
+
+  analyticsRequestBody.append("uip", event.headers["client-ip"])
 
   // Set event data
 

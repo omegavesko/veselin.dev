@@ -31,6 +31,7 @@ export const onRouteUpdate = ({ location }) => {
           dh: window.location.hostname,
           dp: pagePath,
           dt: document.title,
+          dr: document.referrer,
         },
       }),
     })
