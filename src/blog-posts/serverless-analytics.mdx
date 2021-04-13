@@ -1,0 +1,123 @@
+---
+title: Simple, Privacy-Friendly, and Free Analytics Using Serverless Functions
+date: 2021-01-01
+---
+
+Okay, so this post is more about an idea than it is about a specific implementation of it, but for practicality's sake I'm going to use the way I implemented this on my own website ([veselin.dev](https://veselin.dev)) as an example throughout.
+
+## The Problem
+
+Most of us want _some_ analytics on our websites, but the available options typically come with one or more of these downsides:
+
+**Massive JavaScript payload** -- Most of the "big" analytics products have this problem. `gtag.js` is ~35kB minzipped, ~90kB uncompressed (at time of writing); some others are even worse. Yes, these days this is loaded asynchronously and doesn't directly hold up your page while it gets loaded and parsed, but that's still a lot of unnecessary overhead when all you want is some super basic data on how your site is being used.
+
+**Privacy implications** -- Again, this is one you're almost certainly going to hit if you're looking at a free, hosted analytics product, like Google Analytics or Yandex.Metrica. Third-party cookies may thankfully be going the way of the dodo, but tools like Google Analytics -- if you implement them the "normal" way, i.e. clientside and using the JavaScript snippets they give you -- will still insist on giving your users at least first-party cookies they can use to identify them across multiple requests (and visits), regardless of whether you want that or not.
+
+From a practical perspective, this means you now have to ask your users to consent to these tracking cookies (or risk running afoul of the increasing amount of legislation that requires you to do this), and from an ethical perspective, you may just want to avoid tracking your users like this altogether, especially if it means doing it through someone like Google.
+
+**Loss of accuracy due to blockers** --
+
+**Cost** --
+
+## The Solution
+
+```typescript
+import { Handler, APIGatewayEvent } from "aws-lambda"
+import axios from "axios"
+import { URLSearchParams } from "url"
+import * as uuid from "uuid"
+
+interface RequestBody {
+  type: "pageview" | "event"
+  params: any
+}
+
+interface Response {
+  statusCode: number
+}
+
+const handler: Handler<APIGatewayEvent, Response> = async event => {
+  const body: RequestBody = JSON.parse(event.body)
+
+  const analyticsRequestBody = new URLSearchParams()
+  analyticsRequestBody.append("v", "1")
+
+  // enable IP anonymization for all requests
+  analyticsRequestBody.append("aip", "1")
+
+  // GA makes us send a cid parameter, so we send a new UUID every time
+  // because we don't actually want to track users across requests
+  analyticsRequestBody.append("cid", uuid.v4())
+
+  // Override user agent
+  analyticsRequestBody.append("ua", event.headers["user-agent"])
+
+  // Override user IP (this will be anonymized)
+  analyticsRequestBody.append("uip", event.headers["client-ip"])
+
+  // Set event data
+
+  analyticsRequestBody.append("tid", process.env.GOOGLE_ANALYTICS_TRACKING_ID)
+  analyticsRequestBody.append("t", body.type)
+
+  for (const paramName in body.params) {
+    analyticsRequestBody.append(paramName, body.params[paramName])
+  }
+
+  // Send event to Google Analytics
+
+  const response = await axios.post(
+    "https://www.google-analytics.com/collect",
+    analyticsRequestBody.toString()
+  )
+
+  return { statusCode: 200 }
+}
+
+export { handler }
+```
+
+```javascript
+if (process.env.NODE_ENV !== `production`) {
+  return null
+}
+
+if (localStorage.getItem("disableAnalytics") === "true") {
+  console.log("disableAnalytics is 'true', skipping pageview event.")
+  return null
+}
+
+const sendPageView = () => {
+  const pagePath = location
+    ? location.pathname + location.search + location.hash
+    : undefined
+
+  fetch("/.netlify/functions/event", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      type: "pageview",
+      params: {
+        dh: window.location.hostname,
+        dp: pagePath,
+        dt: document.title,
+        dr: document.referrer,
+      },
+    }),
+  })
+}
+
+// wrap inside a rAF to make sure react-helmet is done with its changes
+// (https://github.com/gatsbyjs/gatsby/issues/11592)
+
+if (`requestAnimationFrame` in window) {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(sendPageView)
+  })
+} else {
+  // simulate 2 rAF calls
+  setTimeout(sendPageView, 32)
+}
+```
