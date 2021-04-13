@@ -8,6 +8,7 @@ import {
   parseISO,
   formatDistanceToNow,
   differenceInYears,
+  differenceInDays,
 } from "date-fns"
 import { Helmet } from "react-helmet"
 import { buildOgImageUrl } from "../utils/ogImage"
@@ -39,8 +40,7 @@ export interface BlogPostLayoutProps {
 const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ data }) => {
   const date = parseISO(data.mdx.frontmatter.date)
   const showDateWarning = differenceInYears(new Date(), date) >= 2
-
-  const coffeeCount = Math.max(1, Math.floor(data.mdx.timeToRead / 5))
+  const showRelativeTime = differenceInDays(new Date(), date) >= 1
 
   return (
     <>
@@ -73,11 +73,17 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ data }) => {
         <h1 className="mb-4 text-5xl text-gray-800 font-medium leading-tight dark:text-gray-200">
           {data.mdx.frontmatter.title}
         </h1>
+
         <time dateTime={data.mdx.frontmatter.date}>
-          {format(date, "MMMM do, yyyy")}{" "}
-          <span className="text-gray-500 dark:text-gray-400">
-            ({formatDistanceToNow(date, { addSuffix: true })})
-          </span>
+          {format(date, "MMMM do, yyyy")}
+          {showRelativeTime && (
+            <>
+              {" "}
+              <span className="text-gray-500 dark:text-gray-400">
+                ({formatDistanceToNow(date, { addSuffix: true })})
+              </span>
+            </>
+          )}
         </time>
         <span className="mx-2 text-gray-500 dark:text-gray-400">&middot;</span>
         <ReadingTime minutes={data.mdx.timeToRead} />
