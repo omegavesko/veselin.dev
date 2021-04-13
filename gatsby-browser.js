@@ -15,6 +15,11 @@ export const onRouteUpdate = ({ location }) => {
     return null
   }
 
+  if (localStorage.getItem("disableAnalytics") === "true") {
+    console.log("disableAnalytics is 'true', skipping pageview event.")
+    return null
+  }
+
   const sendPageView = () => {
     const pagePath = location
       ? location.pathname + location.search + location.hash
