@@ -12,11 +12,19 @@ import "@fontsource/fira-code"
 
 export const onRouteUpdate = ({ location }) => {
   if (process.env.NODE_ENV !== `production`) {
+    console.log("We're not in production, skipping pageview event.")
     return null
   }
 
   if (localStorage.getItem("disableAnalytics") === "true") {
     console.log("disableAnalytics is 'true', skipping pageview event.")
+    return null
+  }
+
+  if (window.location.hostname !== "veselin.dev") {
+    console.log(
+      `Hostname (${window.location.hostname}) isn't veselin.dev, skipping pageview event.`
+    )
     return null
   }
 
