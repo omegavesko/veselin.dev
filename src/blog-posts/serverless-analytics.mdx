@@ -151,6 +151,17 @@ if (`requestAnimationFrame` in window) {
 
 I'm not sending any custom events on my site right now, but those would be handled similarly. If you use analytics heavily on your site, you'll probably want to extract this code into a utility function rather than duplicating it every time you want to send an event.
 
+## Why Serverless?
+
+You wouldn't be wrong to notice that everything we're doing here could be implemented just fine in a traditional backend architecture. So, why am I focusing on serverless specifically? Well, there's a few reasons:
+
+- More and more sites (like the one I talk about in my example!) are being built on [Jamstack](https://jamstack.org/) architectures without a traditional backend. Using a serverless function for this works equally well regardless of what your existing stack is.
+- Even if you have an existing backend you could integrate this functionality into, using a serverless function has the benefit of ensuring that you don't have to worry about the performance impact of handling all these extra requests that would typically be handled directly by a third-party service.
+- While this isn't a usecase I talk about a lot in this post, a serverless function not tied to an existing backend is easier to use to collect events from a bunch of different places at once.
+- Coming back to the Jamstack point again, serverless functions are inherently infinitely scalable. If you have a site deployed to something like a CDN -- where your site will never get hugged to death -- the last thing you want to have to worry about is whether your analytics can keep up with your traffic.
+
+That being said, of course you could apply all of these ideas to a traditional backend, too. I just focus on serverless as a solution in this post because I think it's a great fit for this usecase.
+
 ## The Ethics of Circumventing Blockers
 
 To address a bit of an elephant in the room, yes, a significant part of why this pattern is useful is that it allows you to do analytics for users running browser extensions or other tools that would typically block them.
