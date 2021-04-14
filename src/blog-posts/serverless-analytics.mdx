@@ -3,7 +3,7 @@ title: Simple, Privacy-Friendly, and Free Analytics Using Serverless Functions
 date: 2021-01-01
 ---
 
-Okay, so this post is more about an idea than it is about a specific implementation of it, but for practicality's sake I'm going to use the way I implemented this on my own website ([veselin.dev](https://veselin.dev)) as an example throughout.
+**Note:** this post is more about an idea than it is about a specific implementation of it, but for practicality's sake it also includes an example of how I implemented this on my own website ([veselin.dev](https://veselin.dev)).
 
 ## The Problem
 
@@ -11,15 +11,23 @@ Most of us want _some_ analytics on our websites, but the available options typi
 
 **Massive JavaScript payload** -- Most of the "big" analytics products have this problem. `gtag.js` is ~35kB minzipped, ~90kB uncompressed (at time of writing); some others are even worse. Yes, these days this is loaded asynchronously and doesn't directly hold up your page while it gets loaded and parsed, but that's still a lot of unnecessary overhead when all you want is some super basic data on how your site is being used.
 
-**Privacy implications** -- Again, this is one you're almost certainly going to hit if you're looking at a free, hosted analytics product, like Google Analytics or Yandex.Metrica. Third-party cookies may thankfully be going the way of the dodo, but tools like Google Analytics -- if you implement them the "normal" way, i.e. clientside and using the JavaScript snippets they give you -- will still insist on giving your users at least first-party cookies they can use to identify them across multiple requests (and visits), regardless of whether you want that or not.
+**Privacy implications** -- Again, this is one you're almost certainly going to hit if you're looking at a free, hosted analytics product, like Google Analytics or Yandex.Metrica. Third-party cookies may thankfully be going the way of the dodo, but tools like Google Analytics -- if you implement them the "normal" way, i.e. clientside and using the JavaScript snippets they give you -- will still insist on giving your users at least first-party cookies they can use to identify them across multiple requests (and visits), regardless of whether you want that feature or not.
 
-From a practical perspective, this means you now have to ask your users to consent to these tracking cookies (or risk running afoul of the increasing amount of legislation that requires you to do this), and from an ethical perspective, you may just want to avoid tracking your users like this altogether, especially if it means doing it through someone like Google.
+From a practical perspective, this means you now have to ask your users to consent to these tracking cookies, and from an ethical perspective, you may just want to avoid tracking your users like this altogether, especially if it means doing it through someone like Google.
 
-**Loss of accuracy due to blockers** --
+**Inaccuracy due to people blocking analytics** -- Whether it's through using privacy-enhancing browser features, privacy-enhancing browser extensions or even just using an ad blocker, lots of people these days are running something that blocks known analytics products' clientside tracking features. Depending on how privacy-conscious your audience is, up to ~45% [1] of your visitors could be blocking analytics entirely.
 
-**Cost** --
+Serverside analytics naturally don't suffer from this problem, and some privacy-focused analytics products like [Fathom Analytics](https://usefathom.com/support/custom-domains) and [Plausible Analytics](https://plausible.io/docs/custom-domain) give you ways to serve their tracking scripts from your own origin to avoid being caught by this, but if you're using a typical big-name analytics product (unless you're being particularly clever about it, which we'll get to), this is a huge drawback you're kind of just stuck with.
+
+**Cost** -- If you're looking to add analytics to something like a personal site, this is probably your biggest problem. Modern, privacy-focused analytics products like [Fathom Analytics](https://usefathom.com/), [Plausible Analytics](https://plausible.io/) and [Netlify Analytics](https://www.netlify.com/products/analytics/) give you ways to avoid many or even all of the other problems on this list, but they're not free -- which is fine, but I can't justify paying a monthly subscription just to see how many people read my blog posts, and you probably can't either.
+
+One way to get around this could be self-hosting an open-source analytics product like [Matomo Analytics](), but unless you already have somewhere you can put that without incurring any extra costs, that costs money, too.
+
+That being said, if you're looking for an analytics solution for your business or something else that actually makes money, I think you should strongly consider just paying for one of these products and being done with it.
 
 ## The Solution
+
+## Example
 
 ```typescript
 import { Handler, APIGatewayEvent } from "aws-lambda"
@@ -82,11 +90,6 @@ if (process.env.NODE_ENV !== `production`) {
   return null
 }
 
-if (localStorage.getItem("disableAnalytics") === "true") {
-  console.log("disableAnalytics is 'true', skipping pageview event.")
-  return null
-}
-
 const sendPageView = () => {
   const pagePath = location
     ? location.pathname + location.search + location.hash
@@ -121,3 +124,7 @@ if (`requestAnimationFrame` in window) {
   setTimeout(sendPageView, 32)
 }
 ```
+
+## Citations
+
+[1] https://blog.wesleyac.com/posts/google-analytics
