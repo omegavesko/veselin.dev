@@ -5,7 +5,7 @@ date: 2021-01-01
 
 Whether it's for work or play, most of us usually want _some_ analytics on our websites, but the available options typically come with one or more pretty major downsides:
 
-**Massive JavaScript payload** -- Most of the big analytics products have this problem. `gtag.js` is ~35kB minzipped, ~90kB uncompressed (at time of writing); some others are even worse. Yes, these days this is loaded asynchronously and doesn't directly hold up your page while it gets loaded and parsed, but that's still an indefensible amount of overhead just to get some super basic data on how your site is being used.
+**Massive JavaScript payload** -- Most of the big analytics products have this problem. `gtag.js` is ~35kB minzipped, ~90kB uncompressed (at time of writing); some others are even worse. Yes, these days this is loaded asynchronously and doesn't directly hold up your page while it gets loaded and parsed, but that's still an absolutely indefensible amount of overhead just to get some super basic data on how your site is being used.
 
 **Privacy implications** -- Again, this is one you're almost certainly going to hit if you're looking at a free, hosted analytics product, like Google Analytics or Yandex.Metrica. Third-party cookies may thankfully be going the way of the dodo, but tools like Google Analytics -- if you use the tracking code they give you -- will still insist on giving your users at least first-party cookies they can use to identify them across multiple requests (and visits), regardless of whether you want that feature or not.
 
@@ -23,7 +23,7 @@ That being said, if you're looking for an analytics solution for your business o
 
 ## Enter Serverless
 
-Okay, so what can we do about this? Well, we can be smart about the way we use analytics, and take control of how our analytics are collected while still leaving the bulk of the work to an analytics provider (if we want to).
+Okay, so what can we do about this? Well, we can be smart about the way we use analytics, and take control of how our analytics are collected while still leaving the bulk of the work to a third-party analytics product (if we want to).
 
 How do we do that? With a serverless function.
 
@@ -40,24 +40,20 @@ If we go over those downsides we mentioned at the start of this post again, we c
 - **Massive JavaScript payload** -- There is none, our clientside code can be as simple as a single `fetch()` call.
 - **Privacy implications** -- More-or-less none, we don't have to track anything we don't want to. Google will still have your data if that's where you choose to pipe it, but there's not a lot they can do with it if it's all anonymized and not tied to a specific user in any way (though you can still do that if you want to, of course).
 - **Inaccuracy due to people blocking analytics** -- Our analytics requests won't be blocked because they're not tied to a known analytics product. As long as we don't do something like use the word `analytics` in the name of our endpoint, they'll just look like any other request.
-- **Cost** -- On the analytics side this allows us to use free products like Google Analytics without many of the downsides they usually come with, and as for our serverless function, chances are you won't ever have to pay a dime with how generous pretty much every platform's free tier is. For instance, AWS Lambda gives you [one million free requests](https://aws.amazon.com/lambda/pricing/) every month (at time of writing).
+- **Cost** -- On the analytics side this allows us to use free products like Google Analytics without many of the downsides they usually come with, and as for our serverless function, chances are you won't ever have to pay a dime to run it with how generous pretty much every platform's free tier is. For instance, AWS Lambda gives you [one million free requests](https://aws.amazon.com/lambda/pricing/) every month (at time of writing).
 
-## Example
+## What This Looks Like in Practice
 
 I have to stress that this post is much more about the general concept than it is about a specific implementation -- you don't _have_ to do anything here the same way I did it. That being said, I'm including an example of how I implemented this pattern for my own website ([veselin.dev](https://veselin.dev)) because I think it'll be helpful, and because I think my usecase is common enough that many people should be able to take what I did here and carry it over to their own website(s) with few or no changes.
 
-Here's my analytics function. It's a Netlify Functions function that mostly just proxies events to Google Analytics using the [Measurement Protocol](https://developers.google.com/analytics/devguides/collection/protocol/v1) for Universal Analytics (which I picked over [the Measurement Protocol for GA4](https://developers.google.com/analytics/devguides/collection/protocol/ga4) because the latter is still in alpha). It uses Google Analytics' [IP anonymization](https://support.google.com/analytics/answer/2763052?hl=en) feature, and sidesteps Google's requirement of a user identifier (a `cid` or a `uid`) by just generating a new one for every event.
-
-For the time being I'm happy with this solution, but it could be improved in a few ways:
-
-- You could expand on this by implementing something like Plausible's daily identifier method (described [here](https://plausible.io/data-policy#how-we-count-unique-users-without-cookies)) to anonymously identify unique users, and sending that to Google as your `uid`.
-- You could parse and anonymize the IP address yourself instead of trusting Google to do it for you.
+Here's my analytics function. It's a Netlify Functions function that mostly just proxies events to Google Analytics using the [Measurement Protocol](https://developers.google.com/analytics/devguides/collection/protocol/v1) (note: I'm using Universal Analytics here because the Measurement Protocol for GA4 is [still in alpha](https://developers.google.com/analytics/devguides/collection/protocol/ga4)). It anonymizes IP addresses before sending them to Google (though it also enables Google Analytics' [IP anonymization](https://support.google.com/analytics/answer/2763052?hl=en) feature that does the same thing, because why not), and sidesteps Google's requirement of a user identifier (a `cid` or `uid`) by just generating a new one for every event.
 
 ```typescript
 import { Handler, APIGatewayEvent } from "aws-lambda"
 import axios from "axios"
 import { URLSearchParams } from "url"
 import * as uuid from "uuid"
+import anonymizeIP from "ip-anonymize"
 
 interface RequestBody {
   type: "pageview" | "event"
@@ -74,7 +70,7 @@ const handler: Handler<APIGatewayEvent, Response> = async event => {
   const analyticsRequestBody = new URLSearchParams()
   analyticsRequestBody.append("v", "1")
 
-  // enable IP anonymization for all requests
+  // enable IP anonymization, even though we're doing it here anyway
   analyticsRequestBody.append("aip", "1")
 
   // GA makes us send a cid parameter, so we send a new UUID every time
@@ -84,8 +80,8 @@ const handler: Handler<APIGatewayEvent, Response> = async event => {
   // Override user agent
   analyticsRequestBody.append("ua", event.headers["user-agent"])
 
-  // Override user IP (this will be anonymized)
-  analyticsRequestBody.append("uip", event.headers["client-ip"])
+  // Override user IP (but anonymize it first)
+  analyticsRequestBody.append("uip", anonymizeIP(event.headers["client-ip"]))
 
   // Set event data
 
@@ -98,7 +94,7 @@ const handler: Handler<APIGatewayEvent, Response> = async event => {
 
   // Send event to Google Analytics
 
-  const response = await axios.post(
+  await axios.post(
     "https://www.google-analytics.com/collect",
     analyticsRequestBody.toString()
   )
@@ -108,6 +104,10 @@ const handler: Handler<APIGatewayEvent, Response> = async event => {
 
 export { handler }
 ```
+
+For the time being I'm happy with this solution, but you could expand on this by implementing something like Plausible's daily identifier method (described [here](https://plausible.io/data-policy#how-we-count-unique-users-without-cookies)) to anonymously identify unique users, and sending that to Google as your `uid`.
+
+My client code is basically a single `fetch()` call that sends the same data Google Analytics usually sends. You'll want to put this code somewhere it'll be called both on the initial pageload and whenever the user navigates to a different page -- in my case, that's Gatsby's [onRouteUpdate](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/#onRouteUpdate) hook.
 
 ```javascript
 if (process.env.NODE_ENV !== `production`) {
@@ -148,3 +148,19 @@ if (`requestAnimationFrame` in window) {
   setTimeout(sendPageView, 32)
 }
 ```
+
+I'm not sending any custom events on my site right now, but those would be handled similarly. If you use analytics heavily on your site, you'll probably want to extract this code into a utility function rather than duplicating it every time you want to send an event.
+
+## The Ethics of Circumventing Blockers
+
+To address a bit of an elephant in the room, yes, a significant part of why this pattern is useful is that it allows you to do analytics for users running browser extensions or other tools that would typically block them.
+
+My opinion on this overlaps significantly with [Fathom's answer to this question](https://usefathom.com/blog/bypass-adblockers) in their post announcing their custom domain feature (which is explicitly designed to do this) -- I don't believe this is unethical because the reason people block analytics is that they're traditionally extremely invasive, and if you're doing what I've described here, you're doing everything possible to protect your users' privacy.
+
+Or, to put it a different way -- you're not collecting any more data than serverside analytics would be, and nobody thinks serverside analytics are unethical because they can't be blocked by a browser extension, right?
+
+That being said, it's possible to use the techniques I've talked about here in an unethical way, for example by proxying requests to Google Analytics through your own domain, but not doing anything to mitigate the privacy concerns of using Google Analytics. All I can do is ask that you please don't do that.
+
+## Conclusion
+
+That's pretty much it! I'm very curious to see how many other people have stumbled their way into similar solutions before (I know I've seen stuff like people `proxy_pass`ing requests to Google Analytics with nginx to make them less obvious), and I'm also curious to see if anyone comes up with more creative ways of building on top of this concept than just piping events to Google Analytics.
