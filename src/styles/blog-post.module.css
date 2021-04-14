@@ -13,3 +13,8 @@
 .container strong {
   @apply font-medium;
 }
+
+.container ul > li > p:not(:last-child),
+.container ol > li > p:not(:last-child) {
+  @apply mb-4;
+}
