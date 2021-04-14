@@ -1,6 +1,6 @@
 ---
 title: Simple, Privacy-Friendly, and Free Analytics Using Serverless Functions
-date: 2021-01-01
+date: 2021-04-15
 ---
 
 Whether it's for work or play, most of us usually want _some_ analytics on our websites, but the available options typically come with one or more pretty major downsides:
@@ -32,6 +32,8 @@ More specifically, here's what this approach entails:
 - Write a serverless function that takes an analytics event -- whatever that means to you -- and pipes it wherever you want. This gives you complete control over what and how much data you send, what you do with it before sending it to a third party, and where it ends up.
 
   The most immediately useful thing you could do here is pipe the event to a traditional analytics product like Google Analytics (giving you the benefits of a proper analytics product without many of the downsides we talked about), and I imagine this is what most people will want to do, but the place you store your events can be literally anything -- a log file, a database you can later build your own analytics tools on top of, hell, it could even be a spreadsheet.
+
+  You could also do stuff like pipe events to your own database while still sending them to Google Analytics, so you still own all of your data if you ever want to do something with it that Google Analytics doesn't let you do.
 
 - Write a tiny bit of clientside code (which, again, you now have complete control over) to send events to your analytics function.
 
@@ -107,7 +109,7 @@ export { handler }
 
 For the time being I'm happy with this solution, but you could expand on this by implementing something like Plausible's daily identifier method (described [here](https://plausible.io/data-policy#how-we-count-unique-users-without-cookies)) to anonymously identify unique users, and sending that to Google as your `uid`.
 
-My client code is basically a single `fetch()` call that sends the same data Google Analytics usually sends. You'll want to put this code somewhere it'll be called both on the initial pageload and whenever the user navigates to a different page -- in my case, that's Gatsby's [onRouteUpdate](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/#onRouteUpdate) hook.
+My clientside code is basically a single `fetch()` call that sends the same data Google Analytics usually sends for a `pageview` event. You'll want to put this code somewhere it'll be called both on the initial pageload and whenever the user navigates to a different page -- in my case, that's Gatsby's [onRouteUpdate](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/#onRouteUpdate) hook.
 
 ```javascript
 if (process.env.NODE_ENV !== `production`) {
@@ -155,10 +157,10 @@ I'm not sending any custom events on my site right now, but those would be handl
 
 You wouldn't be wrong to notice that everything we're doing here could be implemented just fine in a traditional backend architecture. So, why am I focusing on serverless specifically? Well, there's a few reasons:
 
-- More and more sites (like the one I talk about in my example!) are being built on [Jamstack](https://jamstack.org/) architectures without a traditional backend. Using a serverless function for this works equally well regardless of what your existing stack is.
+- More and more sites (like the one I talk about in my example!) are being built on [Jamstack](https://jamstack.org/) or serverless architectures without a traditional backend. Using a serverless function for this works equally well regardless of what your existing stack is.
 - Even if you have an existing backend you could integrate this functionality into, using a serverless function has the benefit of ensuring that you don't have to worry about the performance impact of handling all these extra requests that would typically be handled directly by a third-party service.
 - While this isn't a usecase I talk about a lot in this post, a serverless function not tied to an existing backend is easier to use to collect events from a bunch of different places at once.
-- Coming back to the Jamstack point again, serverless functions are inherently infinitely scalable. If you have a site deployed to something like a CDN -- where your site will never get hugged to death -- the last thing you want to have to worry about is whether your analytics can keep up with your traffic.
+- Circling back to the Jamstack point again, serverless functions are inherently infinitely scalable. If you have a site deployed to something like a CDN -- where your site will never get hugged to death -- the last thing you want to have to worry about is whether your analytics can keep up with your traffic.
 
 That being said, of course you could apply all of these ideas to a traditional backend, too. I just focus on serverless as a solution in this post because I think it's a great fit for this usecase.
 
@@ -170,7 +172,7 @@ My opinion on this overlaps significantly with [Fathom's answer to this question
 
 Or, to put it a different way -- you're not collecting any more data than serverside analytics would be, and nobody thinks serverside analytics are unethical because they can't be blocked by a browser extension, right?
 
-That being said, it's possible to use the techniques I've talked about here in an unethical way, for example by proxying requests to Google Analytics through your own domain, but not doing anything to mitigate the privacy concerns of using Google Analytics. All I can do is ask that you please don't do that.
+That being said, it's possible to use the techniques I've talked about here in an unethical way, for example by proxying requests to Google Analytics through your own domain, but not doing anything to mitigate the privacy concerns of using Google Analytics. All I can do there is ask that you please don't do that.
 
 ## Conclusion
 
