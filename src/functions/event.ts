@@ -2,6 +2,7 @@ import { Handler, APIGatewayEvent } from "aws-lambda"
 import axios from "axios"
 import { URLSearchParams } from "url"
 import * as uuid from "uuid"
+import anonymizeIP from "ip-anonymize"
 
 interface RequestBody {
   type: "pageview" | "event"
@@ -17,19 +18,19 @@ const handler: Handler<APIGatewayEvent, Response> = async event => {
 
   const analyticsRequestBody = new URLSearchParams()
   analyticsRequestBody.append("v", "1")
-  analyticsRequestBody.append("aip", "1") // enable IP anonymization for all requests
+
+  // enable IP anonymization, even though we're doing it here anyway
+  analyticsRequestBody.append("aip", "1")
 
   // GA makes us send a cid parameter, so we send a new UUID every time
   // because we don't actually want to track users across requests
   analyticsRequestBody.append("cid", uuid.v4())
 
   // Override user agent
-
   analyticsRequestBody.append("ua", event.headers["user-agent"])
 
-  // Override user IP (this will be anonymized)
-
-  analyticsRequestBody.append("uip", event.headers["client-ip"])
+  // Override user IP (but anonymize it first)
+  analyticsRequestBody.append("uip", anonymizeIP(event.headers["client-ip"]))
 
   // Set event data
 

@@ -34,6 +34,7 @@
     "gatsby-remark-smartypants": "^3.2.0",
     "gatsby-source-filesystem": "^3.0.0",
     "gatsby-transformer-sharp": "^3.0.0",
+    "ip-anonymize": "^0.1.0",
     "preact": "^10.5.13",
     "preact-render-to-string": "^5.1.16",
     "prism-react-renderer": "^1.2.0",
