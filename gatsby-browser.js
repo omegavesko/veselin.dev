@@ -45,6 +45,9 @@ export const onRouteUpdate = ({ location }) => {
           dp: pagePath,
           dt: document.title,
           dr: document.referrer,
+          cd1: window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "Dark"
+            : "Light (default)",
         },
       }),
     })
