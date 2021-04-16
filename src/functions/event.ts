@@ -25,10 +25,9 @@ const handler: Handler<APIGatewayEvent, Response> = async event => {
   analyticsRequestBody.append(
     "uid",
     getAnonymousUserIdWithSecret(process.env.ANONYMOUS_USER_ID_SECRET, {
-      domain: event.requestContext.domainName,
-      ip: event.headers["client-ip"] ?? event.requestContext.identity.sourceIp,
-      userAgent:
-        event.headers["user-agent"] ?? event.requestContext.identity.userAgent,
+      domain: event.headers["Host"],
+      ip: event.headers["client-ip"],
+      userAgent: event.headers["user-agent"],
     })
   )
 
