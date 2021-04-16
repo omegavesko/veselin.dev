@@ -1,8 +1,8 @@
 import { Handler, APIGatewayEvent } from "aws-lambda"
 import axios from "axios"
 import { URLSearchParams } from "url"
-import * as uuid from "uuid"
 import anonymizeIP from "ip-anonymize"
+import { getAnonymousUserIdWithSecret } from "anonymous-user-id"
 
 interface RequestBody {
   type: "pageview" | "event"
@@ -22,9 +22,15 @@ const handler: Handler<APIGatewayEvent, Response> = async event => {
   // enable IP anonymization, even though we're doing it here anyway
   analyticsRequestBody.append("aip", "1")
 
-  // GA makes us send a cid parameter, so we send a new UUID every time
-  // because we don't actually want to track users across requests
-  analyticsRequestBody.append("cid", uuid.v4())
+  analyticsRequestBody.append(
+    "uid",
+    getAnonymousUserIdWithSecret(process.env.ANONYMOUS_USER_ID_SECRET, {
+      domain: event.requestContext.domainName,
+      ip: event.headers["client-ip"] ?? event.requestContext.identity.sourceIp,
+      userAgent:
+        event.headers["user-agent"] ?? event.requestContext.identity.userAgent,
+    })
+  )
 
   // Override user agent
   analyticsRequestBody.append("ua", event.headers["user-agent"])
@@ -43,16 +49,12 @@ const handler: Handler<APIGatewayEvent, Response> = async event => {
 
   // Send event to Google Analytics
 
-  console.log("Sending request to Google Analytics:")
-  console.log(analyticsRequestBody)
+  console.log("Sending request to Google Analytics:", analyticsRequestBody)
 
   const response = await axios.post(
     "https://www.google-analytics.com/collect",
     analyticsRequestBody.toString()
   )
-
-  console.log("Received response:")
-  console.log(response)
 
   return { statusCode: 200 }
 }

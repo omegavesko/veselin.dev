@@ -15,4 +15,5 @@ services:
       INTERNAL_STATUS_PORT: 8001
       NETLIFY_AUTH_TOKEN: ~
       GOOGLE_ANALYTICS_TRACKING_ID: ~
+      ANONYMOUS_USER_ID_SECRET: ~
     tty: true
