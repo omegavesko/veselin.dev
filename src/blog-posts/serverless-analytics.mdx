@@ -107,7 +107,7 @@ const handler: Handler<APIGatewayEvent, Response> = async event => {
 export { handler }
 ```
 
-For the time being I'm happy with this solution, but you could expand on this by implementing something like Plausible's daily identifier method (described [here](https://plausible.io/data-policy#how-we-count-unique-users-without-cookies)) to anonymously identify unique users, and sending that to Google as your `uid`.
+For the time being I'm happy with this solution, but you could expand on this by implementing something like Plausible's daily identifier method (described [here](https://plausible.io/data-policy#how-we-count-unique-users-without-cookies)) to anonymously identify unique users, and sending that to Google as your `uid`. (**Update:** I've since published [anonymous-user-id](https://github.com/omegavesko/anonymous-user-id), an npm package that helps you do this!)
 
 My clientside code is basically a single `fetch()` call that sends the same data Google Analytics usually sends for a `pageview` event. You'll want to put this code somewhere it'll be called both on the initial pageload and whenever the user navigates to a different page -- in my case, that's Gatsby's [onRouteUpdate](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/#onRouteUpdate) hook.
 
