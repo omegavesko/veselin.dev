@@ -118,8 +118,8 @@ const IndexPage: React.FC<IndexPageProps> = () => {
           <p>
             You're a company with an{" "}
             <Highlight>ethical business model</Highlight> that doesn't exploit
-            your employees, your users, or the planet (and maybe even does some
-            good).
+            its users, its workers, or the planet to do what it does (and maybe
+            even does some good).
           </p>
           <p>
             You know that the best products are made by{" "}
@@ -153,8 +153,8 @@ const IndexPage: React.FC<IndexPageProps> = () => {
           </p>
           <p>
             Or course, I'm also{" "}
-            <Highlight>always open to learning new things</Highlight>, so I'm by
-            no means restricting myself to the tech that I've listed here.
+            <Highlight>always open to learning new things</Highlight>, so by no
+            means am I restricting myself to the tech that I've listed here.
           </p>
         </TextSection>
         <Section title="Experience">
@@ -168,30 +168,26 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                     Software Developer &middot;
                   </span>{" "}
                   <span className="whitespace-nowrap">Full-time &middot;</span>{" "}
-                  <span className="whitespace-nowrap">
-                    2017 &mdash; current
-                  </span>
+                  <span className="whitespace-nowrap">2017 &mdash; 2021</span>
                 </>
               }
-              active={true}
             >
               <div className="flex flex-col gap-3 text-gray-800 dark:text-gray-200">
                 <p>
-                  At Infostud, I participate in the development of greenfield
+                  At Infostud, I participated in the development of greenfield
                   projects across the entire stack (frontend, backend, DevOps),
                   as well as being responsible for maintenance of legacy code,
                   as part of the team behind Poslovi Infostud and HR Lab &mdash;
                   the leading platforms for job seekers and employers in Serbia.
                 </p>
                 <p>
-                  Tech-wise, I primarily work with PHP and
-                  JavaScript/TypeScript, and deploy (new) projects as Docker
-                  images to an internal Kubernetes cluster.
+                  Tech-wise, I primarily worked with PHP and
+                  JavaScript/TypeScript, and deployed (greenfield) projects as
+                  Docker images to an internal Kubernetes cluster.
                 </p>
                 <ul className="cv-item-bullets flex flex-col gap-3">
                   <li>
-                    Participated in the rewrite of Poslovi Infostud's ATS
-                    product (now{" "}
+                    Worked on the rewrite of Poslovi Infostud's ATS product (now{" "}
                     <StandardLink href="https://www.hrlab.rs/en/hr-lab-asistent">
                       HR Lab ATS
                     </StandardLink>
@@ -200,12 +196,12 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                     software in Serbia.
                   </li>
                   <li>
-                    Built HR Lab Payments, an internal payment platform that
-                    integrates with PayPal and NestPay (a proprietary payment
-                    platform) to enable HR Lab products to easily implement
-                    payment by credit card and other payment methods. On
-                    average, tens of thousands of dollars worth of payments pass
-                    through this service every month.
+                    Built an internal payment platform that integrated with
+                    PayPal and NestPay (a proprietary payment platform) to
+                    enable HR Lab products to easily implement payment by credit
+                    card and other payment methods. On average, tens of
+                    thousands of dollars worth of payments passed through this
+                    service every month.
                   </li>
                   <li>
                     Maintained{" "}
@@ -225,6 +221,14 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                     by 300% compared to the previous iteration of the site.
                   </li>
                   <li>
+                    Migrated a production website (
+                    <StandardLink href="https://www.hrlab.rs/en/">
+                      HRLab.rs
+                    </StandardLink>
+                    ) from Gatsby to Next.js, with no need for downtime or a
+                    feature freeze.
+                  </li>
+                  <li>
                     Implemented CI/CD pipelines for the team's codebases using
                     GitLab CI/CD, Docker, Kubernetes, and Helm.
                   </li>
@@ -233,7 +237,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                     <StandardLink href="https://prijava.infostud.com/">
                       prijava.infostud.com
                     </StandardLink>
-                    , an OAuth 2-based frontend for Infostud's internal LDAP
+                    , an OAuth 2-based frontend for the company's internal LDAP
                     database. This resulted in a significantly friendlier user
                     experience for employees logging into internal tools.
                   </li>
@@ -257,7 +261,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
                 <Tag>Docker</Tag>
                 <Tag>Kubernetes</Tag>
                 <Tag>GraphQL</Tag>
-                <Tag>Gatsby</Tag>
+                <Tag>Next.js</Tag>
                 <Tag>DevOps</Tag>
               </Tags>
             </CVItem>

@@ -93,16 +93,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </div>
       <footer className="flex items-center justify-center py-6 text-gray-500 dark:text-gray-400">
         <span>
-          Built with ❤ using{" "}
+          Built with ❤ and{" "}
           <StandardLink className="text-gray-600" href="https://reactjs.org/">
             React
-          </StandardLink>{" "}
-          and{" "}
-          <StandardLink
-            className="text-gray-600"
-            href="https://www.gatsbyjs.com/"
-          >
-            Gatsby
           </StandardLink>
           .
         </span>
