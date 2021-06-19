@@ -2,6 +2,18 @@ const plugins = [
   `gatsby-plugin-react-helmet`,
   `gatsby-plugin-image`,
   {
+    resolve: `gatsby-plugin-manifest`,
+    options: {
+      name: `Veselin Romić`,
+      short_name: `Veselin Romić`,
+      start_url: `/`,
+      icon: `src/images/icon.png`,
+      background_color: `#ffffff`,
+      theme_color: `#ffffff`,
+      display: `standalone`,
+    },
+  },
+  {
     resolve: `gatsby-source-filesystem`,
     options: {
       name: `images`,
