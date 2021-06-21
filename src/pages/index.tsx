@@ -4,8 +4,12 @@ import Links from "../components/Links"
 
 export interface IndexPageProps {}
 
-const Section: React.FC<{ title: React.ReactNode }> = ({ title, children }) => (
-  <section>
+const Section: React.FC<{ title: React.ReactNode; [key: string]: any }> = ({
+  title,
+  children,
+  ...props
+}) => (
+  <section {...props}>
     <h2 className="mb-4 text-4xl text-gray-800 font-medium leading-tight dark:text-gray-200">
       {title}
     </h2>
@@ -159,6 +163,21 @@ const IndexPage: React.FC<IndexPageProps> = () => {
         </TextSection>
         <Section title="Experience">
           <div className="flex flex-col gap-5">
+            <CVItem
+              title="Freelance Software Engineer"
+              details={
+                <>
+                  <span className="whitespace-nowrap">
+                    2021 &mdash; current
+                  </span>
+                </>
+              }
+              active={true}
+            >
+              I'm currently taking on freelance work.{" "}
+              <StandardLink href="#contact">Get in touch</StandardLink> if you
+              have a project for me!
+            </CVItem>
             <CVItem
               title="Infostud Group"
               companyUrl="https://www.infostud.com/?locale=en"
@@ -346,7 +365,7 @@ const IndexPage: React.FC<IndexPageProps> = () => {
             </CVItem>
           </div>
         </Section>
-        <Section title="Get in touch!">
+        <Section id="contact" title="Get in touch!">
           <Links />
         </Section>
       </div>
