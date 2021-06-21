@@ -174,9 +174,11 @@ const IndexPage: React.FC<IndexPageProps> = () => {
               }
               active={true}
             >
-              I'm currently taking on freelance work.{" "}
-              <StandardLink href="#contact">Get in touch</StandardLink> if you
-              have a project for me!
+              <div className="text-gray-800 dark:text-gray-200">
+                I'm currently taking on freelance work.{" "}
+                <StandardLink href="#contact">Get in touch</StandardLink> if you
+                have a project for me!
+              </div>
             </CVItem>
             <CVItem
               title="Infostud Group"
